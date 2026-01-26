@@ -255,12 +255,8 @@ export function HomePage() {
           {/* Fallback gradient background if video doesn't load - Behind video */}
           <div className="absolute inset-0 bg-gradient-to-br from-[#00A896] to-[#008c7a]" style={{ zIndex: 0 }}></div>
           
-          {/* Overlay layers for text readability - Lighter overlay to show video better */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#00A896]/70 via-[#008c7a]/60 to-[#00A896]/70" style={{ zIndex: 2 }}></div>
-          <div className="absolute inset-0 bg-black/30" style={{ zIndex: 2 }}></div>
-          
-          {/* Subtle pattern overlay */}
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDE0YzMuMzEgMCA2IDIuNjkgNiA2cy0yLjY5IDYtNiA2LTYtMi42OS02LTYgMi42OS02IDYtNnpNNiAzNGMzLjMxIDAgNiAyLjY5IDYgNnMtMi42OSA2LTYgNi02LTIuNjktNi02IDIuNjktNiA2LTZ6TTM2IDU0YzMuMzEgMCA2IDIuNjkgNiA2cy0yLjY5IDYtNiA2LTYtMi42OS02LTYgMi42OS02IDYtNnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-5" style={{ zIndex: 2 }}></div>
+          {/* Very subtle dark overlay only for text readability - minimal opacity */}
+          <div className="absolute inset-0 bg-black/20" style={{ zIndex: 2 }}></div>
         </div>
         
         {/* Content - Above video with higher z-index */}
@@ -271,13 +267,13 @@ export function HomePage() {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h1 className="text-4xl lg:text-6xl xl:text-7xl mb-6 font-bold leading-tight">
-              <span className="block mb-2">Your Gateway to</span>
-              <span className="block bg-gradient-to-r from-white via-teal-100 to-white bg-clip-text text-transparent drop-shadow-lg">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl mb-6 font-bold leading-tight">
+              <span className="block mb-2 text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">Your Gateway to</span>
+              <span className="block bg-gradient-to-r from-white via-teal-50 to-white bg-clip-text text-transparent drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
                 Manufacturing Excellence
               </span>
             </h1>
-            <p className="text-xl lg:text-2xl text-teal-100 mb-10 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl lg:text-2xl text-white/95 mb-10 max-w-3xl mx-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)] font-medium leading-relaxed">
               OT Global connects businesses worldwide with premium Chinese manufacturers. 
               Reduce costs, ensure quality, and scale your supply chain with confidence.
             </p>
@@ -285,21 +281,21 @@ export function HomePage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center"
             >
               <Link href="/contact">
                 <Button
                   size="lg"
-                  className="bg-white text-[#00A896] hover:bg-gray-100 hover:scale-105 transition-all duration-300 text-lg px-8 py-6"
+                  className="bg-white text-[#00A896] hover:bg-gray-50 hover:scale-110 hover:shadow-2xl transition-all duration-300 text-lg font-semibold px-8 py-6 rounded-lg shadow-[0_8px_24px_rgba(0,0,0,0.3)] border-0"
                 >
-                  Request a Quote <ArrowRight className="ml-2" size={24} />
+                  Request a Quote <ArrowRight className="ml-2" size={20} />
                 </Button>
               </Link>
               <Link href="/services">
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-2 border-white text-[#00A896] hover:bg-white/10 hover:scale-105 transition-all duration-300 text-lg px-8 py-6"
+                  className="border-2 border-white/90 text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 hover:border-white hover:scale-110 hover:shadow-2xl transition-all duration-300 text-lg font-semibold px-8 py-6 rounded-lg shadow-[0_8px_24px_rgba(0,0,0,0.3)]"
                 >
                   Our Services
                 </Button>
