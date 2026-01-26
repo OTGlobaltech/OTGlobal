@@ -1,9 +1,6 @@
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "OT Global - Your Gateway to China Manufacturing Excellence",
@@ -20,7 +17,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className="font-sans">
         <div className="min-h-screen flex flex-col">
           <Header />
           <main className="flex-grow">{children}</main>
