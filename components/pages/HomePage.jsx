@@ -155,8 +155,11 @@ export function HomePage() {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h1 className="text-4xl lg:text-6xl xl:text-7xl mb-6 font-bold">
-              Your Gateway to China Manufacturing Excellence
+            <h1 className="text-4xl lg:text-6xl xl:text-7xl mb-6 font-bold leading-tight">
+              <span className="block mb-2">Your Gateway to</span>
+              <span className="block bg-gradient-to-r from-white via-teal-100 to-white bg-clip-text text-transparent drop-shadow-lg">
+                Manufacturing Excellence
+              </span>
             </h1>
             <p className="text-xl lg:text-2xl text-teal-100 mb-10 max-w-3xl mx-auto">
               OT Global connects businesses worldwide with premium Chinese manufacturers. 
@@ -270,7 +273,7 @@ export function HomePage() {
               From sourcing to delivery, we manage every aspect of your China outsourcing needs
             </p>
           </motion.div>
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-7xl mx-auto relative">
             <Carousel
               opts={{
                 align: "start",
@@ -283,9 +286,10 @@ export function HomePage() {
               ]}
               className="w-full"
             >
-              <CarouselContent className="-ml-4">
+              <CarouselPrevious className="left-0 md:left-4 h-14 w-14 border-2 border-gray-300 bg-white hover:bg-gray-50 hover:border-[#00A896] shadow-lg z-10 [&>svg]:h-6 [&>svg]:w-6" />
+              <CarouselContent className="-ml-4 md:ml-0">
                 {carouselImages.map((image, index) => (
-                  <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                  <CarouselItem key={index} className="pl-4 md:pl-6 md:basis-1/2 lg:basis-1/3">
                     <div className="relative h-80 rounded-xl overflow-hidden shadow-lg group">
                       <ImageWithFallback
                         src={image.url}
@@ -301,8 +305,7 @@ export function HomePage() {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="left-4" />
-              <CarouselNext className="right-4" />
+              <CarouselNext className="right-0 md:right-4 h-14 w-14 border-2 border-gray-300 bg-white hover:bg-gray-50 hover:border-[#00A896] shadow-lg z-10 [&>svg]:h-6 [&>svg]:w-6" />
             </Carousel>
           </div>
         </div>
@@ -381,18 +384,21 @@ export function HomePage() {
                 role: "CEO, TechStart Inc.",
                 content: "OT Global transformed our supply chain operations. Their expertise in China sourcing helped us reduce costs by 35% while maintaining quality standards.",
                 rating: 5,
+                avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop&crop=face",
               },
               {
                 name: "Michael Chen",
                 role: "Operations Director, RetailPlus",
                 content: "The team's attention to detail and proactive communication made all the difference. We've been working with them for 3 years and couldn't be happier.",
                 rating: 5,
+                avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face",
               },
               {
                 name: "Emily Rodriguez",
                 role: "Founder, EcoProducts Co.",
                 content: "From sourcing to delivery, OT Global handles everything seamlessly. Their dedicated support team is always available when we need them.",
                 rating: 5,
+                avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face",
               },
             ].map((testimonial, index) => (
               <motion.div key={index} variants={itemVariants}>
@@ -406,9 +412,19 @@ export function HomePage() {
                     <p className="text-gray-700 mb-6 text-lg leading-relaxed">
                       "{testimonial.content}"
                     </p>
-                    <div>
-                      <p className="font-semibold text-gray-900">{testimonial.name}</p>
-                      <p className="text-sm text-gray-500">{testimonial.role}</p>
+                    <div className="flex items-center gap-4">
+                      <div className="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
+                        <Image
+                          src={testimonial.avatar}
+                          alt={testimonial.name}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      <div>
+                        <p className="font-semibold text-gray-900">{testimonial.name}</p>
+                        <p className="text-sm text-gray-500">{testimonial.role}</p>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>

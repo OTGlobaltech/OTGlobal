@@ -52,15 +52,15 @@ export function Header() {
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center h-24 lg:h-28">
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image
               src="/logo.png"
               alt="OT Global Group"
-              width={128}
-              height={64}
-              className="h-16 w-auto"
+              width={180}
+              height={90}
+              className="h-20 lg:h-24 w-auto"
               priority
             />
           </Link>

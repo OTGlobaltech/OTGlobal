@@ -17,9 +17,9 @@ export function Footer() {
               <Image
                 src="/logo.png"
                 alt="OT Global Group"
-                width={128}
-                height={64}
-                className="h-16 w-auto brightness-0 invert"
+                width={180}
+                height={90}
+                className="h-20 lg:h-24 w-auto brightness-0 invert"
               />
             </div>
             <p className="text-sm text-gray-400 mb-4">

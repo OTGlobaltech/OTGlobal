@@ -167,7 +167,7 @@ export function Home({ onNavigate }: HomeProps) {
             className="max-w-4xl mx-auto text-center"
           >
             <h1 className="text-4xl lg:text-6xl xl:text-7xl mb-6">
-              Your Gateway to China Manufacturing Excellence
+              Your Gateway to Manufacturing Excellence
             </h1>
             <p className="text-xl lg:text-2xl text-teal-100 mb-10 max-w-3xl mx-auto">
               OT Global connects businesses worldwide with premium Chinese manufacturers. 
