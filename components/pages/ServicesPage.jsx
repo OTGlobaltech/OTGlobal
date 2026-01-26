@@ -335,7 +335,7 @@ export function ServicesPage() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-2 border-white text-white hover:bg-white/10 px-8 py-6"
+                  className="border-2 border-white text-[#00A896] hover:bg-white/10 px-8 py-6"
                 >
                   View Plans
                 </Button>

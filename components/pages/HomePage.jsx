@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, Globe, Shield, TrendingUp, Users, Award, Clock, Package, Target, Zap } from "lucide-react";
 import Image from "next/image";
@@ -18,6 +18,25 @@ import Autoplay from "embla-carousel-autoplay";
 import { motion } from "framer-motion";
 
 export function HomePage() {
+  const videoRef = useRef(null);
+
+  // Ensure video plays when component mounts
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch((error) => {
+        console.log("Video autoplay prevented:", error);
+        // Try to play again on user interaction
+        const playVideo = () => {
+          if (videoRef.current) {
+            videoRef.current.play();
+          }
+        };
+        document.addEventListener("click", playVideo, { once: true });
+        document.addEventListener("touchstart", playVideo, { once: true });
+      });
+    }
+  }, []);
+
   const carouselImages = [
     {
       url: "https://images.unsplash.com/photo-1548273989-e90f53ea0501?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGluYSUyMGZhY3RvcnklMjBtYW51ZmFjdHVyaW5nfGVufDF8fHx8MTc2MTY0NDQzMHww&ixlib=rb-4.1.0&q=80&w=1080",
@@ -143,12 +162,109 @@ export function HomePage() {
     },
   };
 
+  // VIDEO CONFIGURATION
+  // Option 1: Use local video (RECOMMENDED - Best performance)
+  // Place your video file in: public/videos/
+  // In Next.js, public folder files are served from root, so use: "/videos/filename.mp4"
+  const videoSource = "/videos/Supply-Chain-Concept-I-Explainer.mp4"; // Local video path
+  
+  // Option 2: Use YouTube video (Alternative)
+  // For YouTube, you'll need to extract the video ID and use YouTube embed
+  // Example: https://www.youtube.com/watch?v=VIDEO_ID
+  // We'll use iframe embed for YouTube (see below)
+  const useYouTube = false; // Set to true to use YouTube
+  const youtubeVideoId = ""; // Your YouTube video ID (e.g., "dQw4w9WgXcQ")
+
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-[#00A896] to-[#008c7a] text-white overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDE0YzMuMzEgMCA2IDIuNjkgNiA2cy0yLjY5IDYtNiA2LTYtMi42OS02LTYgMi42OS02IDYtNnpNNiAzNGMzLjMxIDAgNiAyLjY5IDYgNnMtMi42OSA2LTYgNi02LTIuNjktNi02IDIuNjktNiA2LTZ6TTM2IDU0YzMuMzEgMCA2IDIuNjkgNiA2cy0yLjY5IDYtNiA2LTYtMi42OS02LTYgMi42OS02IDYtNnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-20"></div>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 relative z-10">
+      <section className="relative text-white overflow-hidden min-h-[600px] lg:min-h-[700px] flex items-center">
+        {/* Video Background - Behind everything */}
+        <div className="absolute inset-0" style={{ zIndex: 0 }}>
+          {useYouTube && youtubeVideoId ? (
+            // YouTube Embed Option
+            <div className="absolute inset-0 w-full h-full">
+              <iframe
+                className="absolute inset-0 w-full h-full"
+                src={`https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&loop=1&playlist=${youtubeVideoId}&mute=1&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1`}
+                frameBorder="0"
+                allow="autoplay; encrypted-media; picture-in-picture"
+                allowFullScreen
+                style={{
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
+                  width: '177.77777778vh',
+                  height: '56.25vw',
+                  minWidth: '100%',
+                  minHeight: '100%',
+                  transform: 'translate(-50%, -50%)',
+                }}
+              />
+            </div>
+          ) : (
+            // Local Video Option (Recommended)
+            <video
+              ref={videoRef}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              className="absolute inset-0 w-full h-full object-cover"
+              style={{ 
+                objectFit: 'cover',
+                width: '100%',
+                height: '100%',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                zIndex: 1,
+              }}
+              onLoadedData={(e) => {
+                // Force play when video data is loaded
+                e.target.play().catch(() => {
+                  // Autoplay was prevented, will be handled by useEffect
+                });
+              }}
+              onError={(e) => {
+                console.error("Video loading error:", e);
+                console.error("Video source:", videoSource);
+              }}
+              onCanPlay={() => {
+                if (videoRef.current) {
+                  videoRef.current.play().catch(() => {
+                    console.log("Video play prevented, will retry on user interaction");
+                  });
+                }
+              }}
+            >
+              <source src={videoSource} type="video/mp4" />
+              {/* Fallback video options if local video doesn't exist */}
+              <source
+                src="https://videos.pexels.com/video-files/3045163/3045163-hd_1920_1080_30fps.mp4"
+                type="video/mp4"
+              />
+              <source
+                src="https://videos.pexels.com/video-files/2491284/2491284-hd_1920_1080_30fps.mp4"
+                type="video/mp4"
+              />
+            </video>
+          )}
+          
+          {/* Fallback gradient background if video doesn't load - Behind video */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#00A896] to-[#008c7a]" style={{ zIndex: 0 }}></div>
+          
+          {/* Overlay layers for text readability - Lighter overlay to show video better */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#00A896]/70 via-[#008c7a]/60 to-[#00A896]/70" style={{ zIndex: 2 }}></div>
+          <div className="absolute inset-0 bg-black/30" style={{ zIndex: 2 }}></div>
+          
+          {/* Subtle pattern overlay */}
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDE0YzMuMzEgMCA2IDIuNjkgNiA2cy0yLjY5IDYtNiA2LTYtMi42OS02LTYgMi42OS02IDYtNnpNNiAzNGMzLjMxIDAgNiAyLjY5IDYgNnMtMi42OSA2LTYgNi02LTIuNjktNi02IDIuNjktNiA2LTZ6TTM2IDU0YzMuMzEgMCA2IDIuNjkgNiA2cy0yLjY5IDYtNiA2LTYtMi42OS02LTYgMi42OS02IDYtNnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-5" style={{ zIndex: 2 }}></div>
+        </div>
+        
+        {/* Content - Above video with higher z-index */}
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 relative" style={{ zIndex: 10 }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -321,7 +437,7 @@ export function HomePage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl lg:text-5xl text-gray-900 mb-4 font-bold">
+            <h2 className="text-3xl lg:text-5xl text-gray-600 mb-4 font-bold">
               Comprehensive China Outsourcing Services
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">

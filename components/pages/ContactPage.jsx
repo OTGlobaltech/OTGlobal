@@ -246,7 +246,7 @@ export function ContactPage() {
                   </p>
                   <Button
                     variant="outline"
-                    className="w-full border-2 border-white text-white hover:bg-white hover:text-[#00A896]"
+                    className="w-full border-2 border-white text-[#00A896] hover:bg-white hover:text-[#00A896]"
                   >
                     Schedule Now
                   </Button>
