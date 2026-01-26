@@ -1,0 +1,191 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Menu, X, Calendar } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import Image from "next/image";
+
+export function Header() {
+  const pathname = usePathname();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [meetingDialogOpen, setMeetingDialogOpen] = useState(false);
+
+  const navItems = [
+    { name: "Home", path: "/" },
+    { name: "Services", path: "/services" },
+    { name: "Plans", path: "/plans" },
+    { name: "News", path: "/news" },
+    { name: "FAQs", path: "/faqs" },
+    { name: "Contact", path: "/contact" },
+    { name: "Privacy", path: "/privacy" },
+  ];
+
+  const handleMeetingSubmit = (e) => {
+    e.preventDefault();
+    // Handle meeting booking logic here
+    alert("Meeting request submitted! We'll contact you soon.");
+    setMeetingDialogOpen(false);
+  };
+
+  const isActive = (path) => {
+    if (path === "/") {
+      return pathname === "/";
+    }
+    return pathname?.startsWith(path);
+  };
+
+  return (
+    <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
+      <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-20">
+          {/* Logo */}
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/logo.png"
+              alt="OT Global Group"
+              width={128}
+              height={64}
+              className="h-16 w-auto"
+              priority
+            />
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center space-x-6">
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                href={item.path}
+                className={`text-sm transition-colors ${
+                  isActive(item.path)
+                    ? "text-[#00A896]"
+                    : "text-gray-600 hover:text-gray-900"
+                }`}
+              >
+                {item.name}
+              </Link>
+            ))}
+            <Dialog open={meetingDialogOpen} onOpenChange={setMeetingDialogOpen}>
+              <DialogTrigger asChild>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="border-[#00A896] text-[#00A896] hover:bg-[#00A896] hover:text-white"
+                >
+                  <Calendar className="mr-2 h-4 w-4" />
+                  Book Meeting
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[500px]">
+                <DialogHeader>
+                  <DialogTitle>Book a Meeting with Our Expert</DialogTitle>
+                  <DialogDescription>
+                    Schedule a consultation to discuss your China sourcing needs. We'll get back to you within 24 hours.
+                  </DialogDescription>
+                </DialogHeader>
+                <form onSubmit={handleMeetingSubmit} className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="name">Full Name</Label>
+                    <Input id="name" placeholder="John Doe" required />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Email</Label>
+                    <Input id="email" type="email" placeholder="john@company.com" required />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="company">Company Name</Label>
+                    <Input id="company" placeholder="Your Company Ltd." required />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="phone">Phone Number</Label>
+                    <Input id="phone" type="tel" placeholder="+1 (555) 000-0000" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="message">What would you like to discuss?</Label>
+                    <Textarea
+                      id="message"
+                      placeholder="Tell us about your sourcing needs, product requirements, or any questions you have..."
+                      rows={4}
+                      required
+                    />
+                  </div>
+                  <Button type="submit" className="w-full bg-[#00A896] hover:bg-[#008c7a]">
+                    Submit Request
+                  </Button>
+                </form>
+              </DialogContent>
+            </Dialog>
+            <Link href="/contact">
+              <Button
+                size="sm"
+                className="bg-[#00A896] hover:bg-[#008c7a]"
+              >
+                Get Started
+              </Button>
+            </Link>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="lg:hidden text-gray-600"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+
+        {/* Mobile Navigation */}
+        {mobileMenuOpen && (
+          <div className="lg:hidden py-4 border-t border-gray-200">
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                href={item.path}
+                onClick={() => setMobileMenuOpen(false)}
+                className={`block w-full text-left px-4 py-2 text-sm ${
+                  isActive(item.path)
+                    ? "text-[#00A896] bg-teal-50"
+                    : "text-gray-600 hover:bg-gray-50"
+                }`}
+              >
+                {item.name}
+              </Link>
+            ))}
+            <div className="px-4 pt-4 space-y-2">
+              <Dialog open={meetingDialogOpen} onOpenChange={setMeetingDialogOpen}>
+                <DialogTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className="w-full border-[#00A896] text-[#00A896] hover:bg-[#00A896] hover:text-white"
+                  >
+                    <Calendar className="mr-2 h-4 w-4" />
+                    Book Meeting
+                  </Button>
+                </DialogTrigger>
+              </Dialog>
+              <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
+                <Button className="w-full bg-[#00A896] hover:bg-[#008c7a]">
+                  Get Started
+                </Button>
+              </Link>
+            </div>
+          </div>
+        )}
+      </nav>
+    </header>
+  );
+}
