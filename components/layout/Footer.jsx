@@ -65,6 +65,14 @@ export function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link
+                  href="/about"
+                  className="text-sm text-gray-400 hover:text-[#00A896] transition-colors"
+                >
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/services"
                   className="text-sm text-gray-400 hover:text-[#00A896] transition-colors"
                 >
@@ -101,6 +109,14 @@ export function Footer() {
                   className="text-sm text-gray-400 hover:text-[#00A896] transition-colors"
                 >
                   Contact
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/careers"
+                  className="text-sm text-gray-400 hover:text-[#00A896] transition-colors"
+                >
+                  Careers
                 </Link>
               </li>
             </ul>

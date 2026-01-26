@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowRight, CheckCircle2, Globe, Shield, TrendingUp, Users, Award, Clock, Package, Target, Zap } from "lucide-react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ImageWithFallback } from "@/components/common/ImageWithFallback";
@@ -79,10 +79,10 @@ export function HomePage() {
   ];
 
   const stats = [
-    { value: "500+", label: "Partner Factories" },
-    { value: "50+", label: "Countries Served" },
-    { value: "10K+", label: "Products Sourced" },
-    { value: "98%", label: "Client Satisfaction" },
+    { value: "100+", label: "Brands Managed" },
+    { value: "15,000+", label: "SKUs Managed" },
+    { value: "$100M+", label: "Total Spend Managed" },
+    { value: "95%+", label: "Client Satisfaction" },
   ];
 
   const whyChoose = [
@@ -180,7 +180,7 @@ export function HomePage() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-2 border-white text-white hover:bg-white/10 hover:scale-105 transition-all duration-300 text-lg px-8 py-6"
+                  className="border-2 border-white text-[#00A896] hover:bg-white/10 hover:scale-105 transition-all duration-300 text-lg px-8 py-6"
                 >
                   Our Services
                 </Button>
@@ -346,6 +346,164 @@ export function HomePage() {
                 </Card>
               </motion.div>
             ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl lg:text-5xl mb-4 font-bold text-gray-900">
+              What Our Clients Say
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Trusted by businesses worldwide for reliable supply chain solutions
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto"
+          >
+            {[
+              {
+                name: "Sarah Johnson",
+                role: "CEO, TechStart Inc.",
+                content: "OT Global transformed our supply chain operations. Their expertise in China sourcing helped us reduce costs by 35% while maintaining quality standards.",
+                rating: 5,
+              },
+              {
+                name: "Michael Chen",
+                role: "Operations Director, RetailPlus",
+                content: "The team's attention to detail and proactive communication made all the difference. We've been working with them for 3 years and couldn't be happier.",
+                rating: 5,
+              },
+              {
+                name: "Emily Rodriguez",
+                role: "Founder, EcoProducts Co.",
+                content: "From sourcing to delivery, OT Global handles everything seamlessly. Their dedicated support team is always available when we need them.",
+                rating: 5,
+              },
+            ].map((testimonial, index) => (
+              <motion.div key={index} variants={itemVariants}>
+                <Card className="h-full border-gray-200 hover:shadow-xl transition-all duration-300">
+                  <CardContent className="p-8">
+                    <div className="flex mb-4">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <span key={i} className="text-yellow-400 text-xl">★</span>
+                      ))}
+                    </div>
+                    <p className="text-gray-700 mb-6 text-lg leading-relaxed">
+                      "{testimonial.content}"
+                    </p>
+                    <div>
+                      <p className="font-semibold text-gray-900">{testimonial.name}</p>
+                      <p className="text-sm text-gray-500">{testimonial.role}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl lg:text-5xl mb-4 font-bold text-gray-900">
+              Meet Our Team
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Experienced professionals dedicated to your supply chain success
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto"
+          >
+            {[
+              {
+                name: "David Wang",
+                role: "CEO & Founder",
+                description: "20+ years in China sourcing and supply chain management",
+                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
+              },
+              {
+                name: "Lisa Zhang",
+                role: "Head of Operations",
+                description: "Expert in quality control and supplier management",
+                image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop",
+              },
+              {
+                name: "James Liu",
+                role: "Logistics Director",
+                description: "Specialized in international shipping and customs",
+                image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop",
+              },
+              {
+                name: "Maria Garcia",
+                role: "Client Success Manager",
+                description: "Dedicated to ensuring client satisfaction and growth",
+                image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop",
+              },
+            ].map((member, index) => (
+              <motion.div key={index} variants={itemVariants}>
+                <Card className="border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                  <CardContent className="p-6 text-center">
+                    <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden">
+                      <ImageWithFallback
+                        src={member.image}
+                        alt={member.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-1 text-gray-900">{member.name}</h3>
+                    <p className="text-[#00A896] font-medium mb-2">{member.role}</p>
+                    <p className="text-sm text-gray-600">{member.description}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mt-12"
+          >
+            <Link href="/careers">
+              <Button
+                variant="outline"
+                className="border-[#00A896] text-[#00A896] hover:bg-[#00A896] hover:text-white"
+              >
+                Join Our Team
+              </Button>
+            </Link>
           </motion.div>
         </div>
       </section>

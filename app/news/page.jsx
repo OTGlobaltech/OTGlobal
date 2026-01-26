@@ -1,13 +1,10 @@
+import { NewsPage } from "@/components/pages/NewsPage";
+
 export const metadata = {
-  title: "News - OT Global",
-  description: "Latest news and updates from OT Global",
+  title: "News & Insights - E-com Synergy Solutions",
+  description: "Latest news, insights, and best practices in supply chain management",
 };
 
-export default function NewsPage() {
-  return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
-      <h1 className="text-4xl font-bold mb-8">News & Updates</h1>
-      <p className="text-lg text-gray-600">News page content coming soon...</p>
-    </div>
-  );
+export default function News() {
+  return <NewsPage />;
 }

@@ -25,10 +25,12 @@ export function Header() {
 
   const navItems = [
     { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
     { name: "Services", path: "/services" },
     { name: "Plans", path: "/plans" },
     { name: "News", path: "/news" },
     { name: "FAQs", path: "/faqs" },
+    { name: "Careers", path: "/careers" },
     { name: "Contact", path: "/contact" },
     { name: "Privacy", path: "/privacy" },
   ];
