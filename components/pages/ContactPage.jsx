@@ -53,14 +53,14 @@ export function ContactPage() {
     {
       icon: Mail,
       title: "Email",
-      content: "info@ecomsynergy.com",
-      link: "mailto:info@ecomsynergy.com",
+      content: "info@otglobal.tech",
+      link: "mailto:info@otglobal.tech",
     },
     {
       icon: Phone,
       title: "Phone",
-      content: "+1 (555) 123-4567",
-      link: "tel:+15551234567",
+      content: "(+92) 333 5007115",
+      link: "tel:+923335007115",
     },
     {
       icon: MapPin,

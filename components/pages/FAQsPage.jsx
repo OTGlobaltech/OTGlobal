@@ -12,52 +12,54 @@ import {
 export function FAQsPage() {
   const faqs = [
     {
-      question: "What services does E-com Synergy Solutions provide?",
-      answer: "We provide comprehensive procurement and logistics services including China sourcing, quality assurance, cost optimization, product sourcing, logistics & shipping, compliance & certification, supply chain dashboard management, and dedicated team support. We offer three service tiers: Basic, Plus, and Pro to meet different business needs.",
+      question: "What is OT Global Group?",
+      answer:
+        "At OT Global, we provide end-to-end supply chain management, seamlessly integrating global sourcing, procurement, logistics, and production planning, warehouse management, ERP & Data Analytics for your small and medium enterprises especially Amazon and e-commerce stores. With expertise in robust supply chain management, we optimize every aspect so you can focus on growing your brand.\n\nWith over a decade of global supply chain expertise, OT Global Group brings world-class procurement and logistics solutions to businesses worldwide. Our leadership team has served in senior roles for renowned U.S. retail brands, including Monolith Brands Group and Thrasio, overseeing procurement operations worth hundreds of millions of dollars annually.",
     },
     {
-      question: "How do you ensure product quality?",
-      answer: "We implement rigorous quality control measures at every stage of production. This includes pre-production inspections, in-process quality control, final inspection before shipment, and quality certification support. Our team conducts factory audits and product inspections to ensure all products meet international standards and your specifications.",
+      question: "How does your product/service work?",
+      answer:
+        "At OT Global Group, we provide end-to-end procurement and supply chain solutions tailored to your business needs. From sourcing quality products worldwide to managing purchasing, logistics, and delivery, we handle every stage of the process. Using advanced systems like NetSuite, Anvyl, and TMS platforms, we ensure transparency, real-time tracking, and cost efficiency. Whether you need global procurement, freight coordination, or supply chain automation, we deliver streamlined operations with reliable, on-time results.",
     },
     {
-      question: "What is your experience with Amazon Aggregators?",
-      answer: "We have extensive experience working with Amazon Aggregators, managing over 100 brands, 15,000 SKUs, and overseeing more than $100 million in spend. We specialize in AGL and AWD shipments, ensuring timely deliveries and strict compliance with Amazon requirements to maintain high ratings.",
+      question: "Do you handle Amazon FBA shipments?",
+      answer:
+        "Yes. We specialize in Amazon FBA shipments, including direct delivery to Amazon fulfillment centers, packaging compliance, and timely tracking updates to meet Amazon’s strict requirements.",
     },
     {
-      question: "How much can I save on procurement costs?",
-      answer: "Our clients typically see cost reductions of up to 40% through our China network. We leverage our extensive supplier relationships, volume discounts, and negotiation expertise to optimize your procurement costs while maintaining quality standards.",
-    },
-    {
-      question: "What is the difference between Basic, Plus, and Pro plans?",
-      answer: "Basic includes essential services like RFQ validation, PO management, inbound logistics, and standard reporting. Plus adds advanced tools like demand planning, SKU data hygiene, and HTS code auditing. Pro provides comprehensive solutions including regulatory compliance, counter sourcing, AGL logistics management, ERP management, and weekly supply chain time.",
-    },
-    {
-      question: "Do you handle customs and shipping?",
-      answer: "Yes, we provide end-to-end logistics management including freight forwarding, customs clearance, warehouse management, and last-mile delivery. Our team ensures all documentation is properly handled and products comply with import/export regulations.",
-    },
-    {
-      question: "How quickly can you source products?",
-      answer: "Our streamlined processes and established relationships enable faster turnaround times. The exact timeline depends on product complexity, quantity, and customization requirements. We provide detailed timelines during the initial consultation and keep you updated throughout the process.",
+      question: "Which countries do you operate in?",
+      answer:
+        "We operate globally with a strong presence in the USA, China, and other key international markets. Our sourcing, logistics, and customs clearance services cover all major trade lanes.",
     },
     {
       question: "What industries do you serve?",
-      answer: "We serve various industries including e-commerce, retail, consumer goods, electronics, textiles, and more. Our expertise spans multiple product categories, and we can source everything from raw materials to finished products.",
+      answer:
+        "We serve industries including construction, retail, e-commerce, manufacturing, and wholesale distribution.",
     },
     {
-      question: "How do you ensure compliance with regulations?",
-      answer: "We handle all compliance requirements including CE, FCC, FDA certifications, regulatory compliance, documentation management, and import/export compliance. Our team stays updated with the latest regulations to ensure your products meet all necessary standards.",
+      question: "Do you help with customs clearance?",
+      answer:
+        "Yes. We manage the entire customs clearance process, ensuring compliance with local regulations to avoid delays or penalties.",
     },
     {
-      question: "What kind of support do you provide?",
-      answer: "We provide dedicated account managers and support teams available whenever you need assistance. Our team offers personalized and proactive support, ensuring smooth communication and quick resolution of any issues. We also provide comprehensive supply chain dashboards for real-time visibility.",
+      question: "Can you assist with global sourcing of raw materials?",
+      answer:
+        "Absolutely. We connect clients with reliable suppliers worldwide, ensuring quality, cost efficiency, and timely delivery.",
     },
     {
-      question: "Can you help with existing supply chains?",
-      answer: "Absolutely. We can audit and optimize existing supply chains, identify cost-saving opportunities, improve quality control processes, and enhance overall efficiency. Our team works with you to understand your current operations and provide tailored improvement solutions.",
+      question: "What is your process for freight forwarding?",
+      answer:
+        "We manage the complete freight forwarding cycle — from pickup to customs clearance to final delivery — using sea, air, or land transport depending on client needs.",
     },
     {
-      question: "How do I get started?",
-      answer: "Getting started is easy. Simply contact us through our contact page or book a meeting with our expert team. We'll discuss your specific needs, provide a customized solution, and guide you through the onboarding process. Our team is ready to help you optimize your supply chain operations.",
+      question: "Can you integrate with my ERP or inventory system?",
+      answer:
+        "Yes. We work with major ERP tools like SAP and can integrate data for smooth supply chain visibility.",
+    },
+    {
+      question: "How do I get a quotation for your services?",
+      answer:
+        "You can fill out our online request form or contact our sales team with your shipment details, and we’ll respond with a tailored quote within 24 hours.",
     },
   ];
 

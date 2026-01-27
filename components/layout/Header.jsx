@@ -23,6 +23,25 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [meetingDialogOpen, setMeetingDialogOpen] = useState(false);
 
+  const solutionItems = [
+    {
+      name: "Order Management – Panom",
+      path: "/solutions/order-management-panom",
+    },
+    {
+      name: "Distribution & Fulfillment",
+      path: "/solutions/distribution-fulfillment",
+    },
+    {
+      name: "Transportation",
+      path: "/solutions/transportation",
+    },
+    {
+      name: "Customs Brokerage & Global Trade",
+      path: "/solutions/customs-brokerage-global-trade",
+    },
+  ];
+
   const navItems = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
@@ -80,6 +99,27 @@ export function Header() {
                 {item.name}
               </Link>
             ))}
+            {/* Solutions dropdown (desktop) - at the end */}
+            <div className="relative group">
+              <button
+                type="button"
+                className="text-sm text-gray-600 hover:text-gray-900 flex items-center gap-1 transition-colors"
+              >
+                Solutions
+                <span className="text-[10px] translate-y-px">▼</span>
+              </button>
+              <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-opacity transition-visibility duration-150 absolute left-1/2 -translate-x-1/2 mt-3 w-72 bg-white rounded-xl shadow-xl border border-gray-100 py-3 z-50">
+                {solutionItems.map((item) => (
+                  <Link
+                    key={item.path}
+                    href={item.path}
+                    className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#00A896]"
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
             <Dialog open={meetingDialogOpen} onOpenChange={setMeetingDialogOpen}>
               <DialogTrigger asChild>
                 <Button
@@ -152,7 +192,7 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-gray-200">
+          <div className="lg:hidden py-4 border-t border-gray-200 space-y-2">
             {navItems.map((item) => (
               <Link
                 key={item.path}
@@ -167,6 +207,24 @@ export function Header() {
                 {item.name}
               </Link>
             ))}
+            {/* Solutions section (mobile) - at the end */}
+            <div className="px-4 pt-2">
+              <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">
+                Solutions
+              </div>
+              <div className="space-y-1">
+                {solutionItems.map((item) => (
+                  <Link
+                    key={item.path}
+                    href={item.path}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block w-full text-left px-3 py-2 text-sm rounded-md text-gray-700 hover:bg-gray-50 hover:text-[#00A896]"
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
             <div className="px-4 pt-4 space-y-2">
               <Dialog open={meetingDialogOpen} onOpenChange={setMeetingDialogOpen}>
                 <DialogTrigger asChild>
