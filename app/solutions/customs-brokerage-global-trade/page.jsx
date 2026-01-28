@@ -6,12 +6,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
-export const metadata = {
-  title: "Customs Brokerage & Global Trade | OT Global",
-  description:
-    "Customs brokerage and global trade compliance services to keep your shipments moving and compliant.",
-};
-
 export default function CustomsBrokerageGlobalTradePage() {
   const valueProps = [
     "Proactive management of customs documentation, HS/HTS codes, and declarations",

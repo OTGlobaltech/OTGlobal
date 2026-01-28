@@ -6,12 +6,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
-export const metadata = {
-  title: "Order Management – Panom | OT Global",
-  description:
-    "Centralized, data-driven order management for global supply chains with OT Global's Panom solution.",
-};
-
 export default function OrderManagementPanomPage() {
   const benefits = [
     "Centralized visibility of all purchase orders across suppliers and regions",

@@ -6,12 +6,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
-export const metadata = {
-  title: "Transportation | OT Global",
-  description:
-    "End-to-end transportation planning and execution across sea, air, and land for global supply chains.",
-};
-
 export default function TransportationPage() {
   const focusAreas = [
     "Mode selection and routing strategies (sea, air, rail, truck)",

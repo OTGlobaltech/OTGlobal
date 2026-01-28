@@ -6,12 +6,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
-export const metadata = {
-  title: "Distribution & Fulfillment | OT Global",
-  description:
-    "End-to-end distribution and fulfillment solutions for ecommerce, retail, and wholesale brands.",
-};
-
 export default function DistributionFulfillmentPage() {
   const highlights = [
     "Support for Amazon FBA, 3PL, and direct-to-retail distribution models",
