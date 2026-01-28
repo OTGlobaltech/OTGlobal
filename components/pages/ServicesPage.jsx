@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   Globe,
@@ -23,6 +24,25 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export function ServicesPage() {
+  const videoRef = useRef(null);
+
+  // Ensure video plays when component mounts
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch((error) => {
+        console.log("Video autoplay prevented:", error);
+        // Try to play again on user interaction
+        const playVideo = () => {
+          if (videoRef.current) {
+            videoRef.current.play();
+          }
+        };
+        document.addEventListener("click", playVideo, { once: true });
+        document.addEventListener("touchstart", playVideo, { once: true });
+      });
+    }
+  }, []);
+
   const mainServices = [
     {
       icon: Globe,
@@ -223,6 +243,30 @@ export function ServicesPage() {
     },
   };
 
+  const iconVariants = {
+    rest: { scale: 1, rotate: 0 },
+    hover: { 
+      scale: 1.1, 
+      rotate: [0, -10, 10, -10, 0],
+      transition: { 
+        duration: 0.5,
+        ease: "easeInOut"
+      }
+    },
+  };
+
+  const cardVariants = {
+    rest: { scale: 1, y: 0 },
+    hover: { 
+      scale: 1.02,
+      y: -8,
+      transition: {
+        duration: 0.3,
+        ease: "easeOut"
+      }
+    },
+  };
+
   return (
     <div className="bg-white">
       {/* Hero Section */}
@@ -240,6 +284,69 @@ export function ServicesPage() {
             <p className="text-xl text-teal-100">
               From sourcing to delivery, we manage every aspect of your China supply chain
             </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Video Showcase Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="max-w-5xl mx-auto"
+          >
+            <div className="text-center mb-12">
+              <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-gray-900">
+                See Our Supply Chain Solutions in Action
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Watch how we streamline global sourcing, logistics, and supply chain management
+              </p>
+            </div>
+            <div className="relative w-full max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl bg-gray-900">
+              <div className="relative aspect-video w-full">
+              <video
+                ref={videoRef}
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+                className="absolute inset-0 w-full h-full object-cover"
+                onLoadedData={(e) => {
+                  e.target.play().catch(() => {
+                    // Autoplay was prevented, will be handled by useEffect
+                  });
+                }}
+                onError={(e) => {
+                  console.error("Video loading error:", e);
+                }}
+                onCanPlay={() => {
+                  if (videoRef.current) {
+                    videoRef.current.play().catch(() => {
+                      console.log("Video play prevented, will retry on user interaction");
+                    });
+                  }
+                }}
+              >
+                <source src="/videos/Supply-Chain-Concept-I-Explainer.mp4" type="video/mp4" />
+                {/* Fallback video options if local video doesn't exist */}
+                <source
+                  src="https://videos.pexels.com/video-files/3045163/3045163-hd_1920_1080_30fps.mp4"
+                  type="video/mp4"
+                />
+                <source
+                  src="https://videos.pexels.com/video-files/2491284/2491284-hd_1920_1080_30fps.mp4"
+                  type="video/mp4"
+                />
+              </video>
+              </div>
+              {/* Subtle overlay gradient at bottom for better visual integration */}
+              <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-50 to-transparent pointer-events-none"></div>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -270,12 +377,22 @@ export function ServicesPage() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {mainServices.map((service, index) => (
-              <motion.div key={index} variants={itemVariants}>
-                <Card className="h-full border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                  <CardHeader>
-                    <div className="bg-teal-100 w-16 h-16 rounded-xl flex items-center justify-center mb-4">
-                      <service.icon className="text-[#00A896]" size={32} />
-                    </div>
+              <motion.div 
+                key={index} 
+                variants={itemVariants}
+                whileHover="hover"
+                initial="rest"
+                animate="rest"
+              >
+                <motion.div variants={cardVariants}>
+                  <Card className="h-full border-gray-200 hover:shadow-xl transition-all duration-300 hover:border-[#00A896]">
+                    <CardHeader>
+                      <motion.div 
+                        className="bg-teal-100 w-16 h-16 rounded-xl flex items-center justify-center mb-4"
+                        variants={iconVariants}
+                      >
+                        <service.icon className="text-[#00A896]" size={32} />
+                      </motion.div>
                     <CardTitle className="text-2xl mb-2">{service.title}</CardTitle>
                     <CardDescription className="text-base">{service.description}</CardDescription>
                   </CardHeader>
@@ -290,6 +407,7 @@ export function ServicesPage() {
                     </ul>
                   </CardContent>
                 </Card>
+                </motion.div>
               </motion.div>
             ))}
           </motion.div>
@@ -322,16 +440,27 @@ export function ServicesPage() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {supplyChainServices.map((service, index) => (
-              <motion.div key={index} variants={itemVariants}>
-                <Card className="h-full border-gray-200 hover:shadow-lg transition-all duration-300">
-                  <CardHeader>
-                    <div className="bg-gradient-to-br from-[#00A896] to-[#008c7a] w-16 h-16 rounded-xl flex items-center justify-center mb-4">
-                      <service.icon className="text-white" size={32} />
-                    </div>
+              <motion.div 
+                key={index} 
+                variants={itemVariants}
+                whileHover="hover"
+                initial="rest"
+                animate="rest"
+              >
+                <motion.div variants={cardVariants}>
+                  <Card className="h-full border-gray-200 hover:shadow-lg transition-all duration-300 hover:border-[#00A896]">
+                    <CardHeader>
+                      <motion.div 
+                        className="bg-gradient-to-br from-[#00A896] to-[#008c7a] w-16 h-16 rounded-xl flex items-center justify-center mb-4"
+                        variants={iconVariants}
+                      >
+                        <service.icon className="text-white" size={32} />
+                      </motion.div>
                     <CardTitle className="text-xl mb-2">{service.title}</CardTitle>
                     <CardDescription>{service.description}</CardDescription>
                   </CardHeader>
                 </Card>
+                </motion.div>
               </motion.div>
             ))}
           </motion.div>
@@ -365,12 +494,22 @@ export function ServicesPage() {
             className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto"
           >
             {solutionsServices.map((service, index) => (
-              <motion.div key={index} variants={itemVariants}>
-                <Card className="h-full border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                  <CardHeader>
-                    <div className="bg-gradient-to-br from-[#00A896]/10 to-[#008c7a]/10 w-14 h-14 rounded-xl flex items-center justify-center mb-4">
-                      <service.icon className="text-[#00A896]" size={26} />
-                    </div>
+              <motion.div 
+                key={index} 
+                variants={itemVariants}
+                whileHover="hover"
+                initial="rest"
+                animate="rest"
+              >
+                <motion.div variants={cardVariants}>
+                  <Card className="h-full border-gray-200 hover:shadow-xl transition-all duration-300 hover:border-[#00A896]">
+                    <CardHeader>
+                      <motion.div 
+                        className="bg-gradient-to-br from-[#00A896]/10 to-[#008c7a]/10 w-14 h-14 rounded-xl flex items-center justify-center mb-4"
+                        variants={iconVariants}
+                      >
+                        <service.icon className="text-[#00A896]" size={26} />
+                      </motion.div>
                     <CardTitle className="text-xl mb-2">{service.title}</CardTitle>
                     <CardDescription className="text-base text-gray-700">
                       {service.description}
@@ -387,6 +526,7 @@ export function ServicesPage() {
                     </ul>
                   </CardContent>
                 </Card>
+                </motion.div>
               </motion.div>
             ))}
           </motion.div>
@@ -399,23 +539,53 @@ export function ServicesPage() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="mt-16 max-w-5xl mx-auto"
           >
-            <div className="bg-gradient-to-r from-[#00A896] to-[#008c7a] rounded-2xl px-8 py-10 text-white shadow-xl">
-              <h3 className="text-2xl lg:text-3xl font-bold mb-4">
+            <motion.div 
+              className="bg-gradient-to-r from-[#00A896] to-[#008c7a] rounded-2xl px-8 py-10 text-white shadow-xl"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+            >
+              <motion.h3 
+                className="text-2xl lg:text-3xl font-bold mb-4"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
                 Your One-Stop Shop for All Supply Chain Operations
-              </h3>
+              </motion.h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-sm font-medium">
-                <span>Global Sourcing Services</span>
-                <span>Logistics Planning &amp; Support</span>
-                <span>Demand &amp; Production Planning</span>
-                <span>Data Analysis &amp; Reporting</span>
-                <span>ERP Integration &amp; Process Development</span>
-                <span>Supplier Management &amp; Scorecards</span>
+                {[
+                  "Global Sourcing Services",
+                  "Logistics Planning & Support",
+                  "Demand & Production Planning",
+                  "Data Analysis & Reporting",
+                  "ERP Integration & Process Development",
+                  "Supplier Management & Scorecards",
+                ].map((item, idx) => (
+                  <motion.span
+                    key={idx}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: 0.2 + idx * 0.1 }}
+                    whileHover={{ x: 5, scale: 1.05 }}
+                    className="inline-block"
+                  >
+                    {item}
+                  </motion.span>
+                ))}
               </div>
-              <p className="mt-4 text-teal-50 text-sm sm:text-base">
+              <motion.p 
+                className="mt-4 text-teal-50 text-sm sm:text-base"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              >
                 Get next-generation technology-enabled supply chain solutions tailored to your
                 brand&apos;s growth ambitions.
-              </p>
-            </div>
+              </motion.p>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -439,7 +609,16 @@ export function ServicesPage() {
           </motion.div>
 
           <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+              {/* Connecting line animation */}
+              <motion.div
+                className="hidden md:block absolute top-10 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-[#00A896] to-[#008c7a]"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, delay: 0.5 }}
+                style={{ originX: 0 }}
+              />
               {[
                 { step: "01", title: "Discovery", desc: "Understand your requirements" },
                 { step: "02", title: "Sourcing", desc: "Find the right suppliers" },
@@ -448,15 +627,23 @@ export function ServicesPage() {
               ].map((item, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 20, scale: 0.8 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="text-center"
+                  transition={{ duration: 0.6, delay: index * 0.15 }}
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  className="text-center relative z-10"
                 >
-                  <div className="bg-gradient-to-br from-[#00A896] to-[#008c7a] w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <motion.div 
+                    className="bg-gradient-to-br from-[#00A896] to-[#008c7a] w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg"
+                    whileHover={{ 
+                      rotate: 360,
+                      boxShadow: "0 10px 30px rgba(0, 168, 150, 0.4)"
+                    }}
+                    transition={{ duration: 0.6 }}
+                  >
                     <span className="text-white text-2xl font-bold">{item.step}</span>
-                  </div>
+                  </motion.div>
                   <h3 className="text-xl font-semibold mb-2 text-gray-900">{item.title}</h3>
                   <p className="text-gray-600">{item.desc}</p>
                 </motion.div>

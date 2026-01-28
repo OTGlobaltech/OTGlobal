@@ -578,7 +578,7 @@ export function HomePage() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 max-w-7xl mx-auto"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto"
           >
             {[
               {
@@ -588,25 +588,13 @@ export function HomePage() {
                 image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
               },
               {
-                name: "Danish Baig",
-                role: "COO",
-                description: "Overseeing day-to-day operations and supply chain excellence",
-                image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop",
-              },
-              {
                 name: "Usama Mukhtar",
                 role: "CFO",
                 description: "Managing financial strategy and business growth",
                 image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop",
               },
               {
-                name: "Meysem Tamaar",
-                role: "CTO",
-                description: "Driving technology innovation and digital transformation",
-                image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop",
-              },
-              {
-                name: "Zulqurnain Awan",
+                name: "Zulqurnain Afzal",
                 role: "CCO",
                 description: "Building strong client relationships and partnerships",
                 image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop",
