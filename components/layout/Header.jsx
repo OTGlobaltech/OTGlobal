@@ -22,6 +22,7 @@ export function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [meetingDialogOpen, setMeetingDialogOpen] = useState(false);
+  const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
 
   const solutionItems = [
     {
@@ -86,20 +87,19 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-6">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                href={item.path}
-                className={`text-sm transition-colors ${
-                  isActive(item.path)
-                    ? "text-[#00A896]"
-                    : "text-gray-600 hover:text-gray-900"
-                }`}
-              >
-                {item.name}
-              </Link>
-            ))}
-            {/* Solutions dropdown (desktop) - at the end */}
+            {/* Home first */}
+            <Link
+              href="/"
+              className={`text-sm transition-colors ${
+                isActive("/")
+                  ? "text-[#00A896]"
+                  : "text-gray-600 hover:text-gray-900"
+              }`}
+            >
+              Home
+            </Link>
+
+            {/* Solutions immediately after Home */}
             <div className="relative group">
               <button
                 type="button"
@@ -120,6 +120,23 @@ export function Header() {
                 ))}
               </div>
             </div>
+
+            {/* Remaining nav items */}
+            {navItems
+              .filter((item) => item.name !== "Home")
+              .map((item) => (
+                <Link
+                  key={item.path}
+                  href={item.path}
+                  className={`text-sm transition-colors ${
+                    isActive(item.path)
+                      ? "text-[#00A896]"
+                      : "text-gray-600 hover:text-gray-900"
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              ))}
             <Dialog open={meetingDialogOpen} onOpenChange={setMeetingDialogOpen}>
               <DialogTrigger asChild>
                 <Button
@@ -193,38 +210,68 @@ export function Header() {
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
           <div className="lg:hidden py-4 border-t border-gray-200 space-y-2">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                href={item.path}
-                onClick={() => setMobileMenuOpen(false)}
-                className={`block w-full text-left px-4 py-2 text-sm ${
-                  isActive(item.path)
-                    ? "text-[#00A896] bg-teal-50"
-                    : "text-gray-600 hover:bg-gray-50"
-                }`}
-              >
-                {item.name}
-              </Link>
-            ))}
-            {/* Solutions section (mobile) - at the end */}
-            <div className="px-4 pt-2">
-              <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">
-                Solutions
-              </div>
-              <div className="space-y-1">
+            {/* Home first */}
+            <Link
+              href="/"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                setMobileSolutionsOpen(false);
+              }}
+              className={`block w-full text-left px-4 py-2 text-sm ${
+                isActive("/")
+                  ? "text-[#00A896] bg-teal-50"
+                  : "text-gray-600 hover:bg-gray-50"
+              }`}
+            >
+              Home
+            </Link>
+
+            {/* Solutions immediately after Home (tap to expand) */}
+            <button
+              type="button"
+              onClick={() => setMobileSolutionsOpen((open) => !open)}
+              className="w-full flex items-center justify-between px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+            >
+              <span className="font-medium">Solutions</span>
+              <span className="text-xs text-gray-500">
+                {mobileSolutionsOpen ? "▲" : "▼"}
+              </span>
+            </button>
+            {mobileSolutionsOpen && (
+              <div className="px-4 pb-2 space-y-1">
                 {solutionItems.map((item) => (
                   <Link
                     key={item.path}
                     href={item.path}
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      setMobileSolutionsOpen(false);
+                    }}
                     className="block w-full text-left px-3 py-2 text-sm rounded-md text-gray-700 hover:bg-gray-50 hover:text-[#00A896]"
                   >
                     {item.name}
                   </Link>
                 ))}
               </div>
-            </div>
+            )}
+
+            {/* Remaining items after Solutions */}
+            {navItems
+              .filter((item) => item.name !== "Home")
+              .map((item) => (
+                <Link
+                  key={item.path}
+                  href={item.path}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`block w-full text-left px-4 py-2 text-sm ${
+                    isActive(item.path)
+                      ? "text-[#00A896] bg-teal-50"
+                      : "text-gray-600 hover:bg-gray-50"
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              ))}
             <div className="px-4 pt-4 space-y-2">
               <Dialog open={meetingDialogOpen} onOpenChange={setMeetingDialogOpen}>
                 <DialogTrigger asChild>
