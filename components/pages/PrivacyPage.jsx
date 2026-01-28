@@ -92,7 +92,7 @@ export function PrivacyPage() {
             >
               <h2 className="text-2xl font-bold mb-4 text-gray-900">Introduction</h2>
               <p className="text-gray-700 leading-relaxed mb-4">
-                E-com Synergy Solutions ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.
+                OT Global Group ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.
               </p>
               <p className="text-gray-700 leading-relaxed">
                 By using our website and services, you agree to the collection and use of information in accordance with this policy. If you do not agree with our policies and practices, please do not use our services.
@@ -190,7 +190,7 @@ export function PrivacyPage() {
                 If you have any questions about this Privacy Policy, please contact us:
               </p>
               <ul className="space-y-2">
-                <li>Email: privacy@ecomsynergy.com</li>
+                <li>Email: info@otglobal.tech</li>
                 <li>Phone: +1 (555) 123-4567</li>
                 <li>Address: United States</li>
               </ul>

@@ -74,7 +74,7 @@ export function AboutPage() {
             className="text-center max-w-3xl mx-auto"
           >
             <h1 className="text-4xl lg:text-6xl font-bold mb-6">
-              About E-com Synergy Solutions
+              About OT Global Group
             </h1>
             <p className="text-xl text-teal-100">
               Empowering businesses with seamless and efficient supply chain solutions
@@ -100,7 +100,7 @@ export function AboutPage() {
                   </div>
                   <h2 className="text-3xl font-bold mb-4 text-gray-900">Our Vision</h2>
                   <p className="text-lg text-gray-700 leading-relaxed">
-                    Empowering businesses with seamless and efficient supply chain solutions for sustainable growth.
+                    Pursuing Excellence in Supply Chain Operations
                   </p>
                 </CardContent>
               </Card>
@@ -119,7 +119,7 @@ export function AboutPage() {
                   </div>
                   <h2 className="text-3xl font-bold mb-4 text-gray-900">Our Mission</h2>
                   <p className="text-lg text-gray-700 leading-relaxed">
-                    To provide comprehensive procurement and logistics services that streamline supply chain operations, enhance efficiency, and drive value for our clients, ensuring their success in the competitive e-commerce landscape.
+                    Foster Technical Innovation, Adaption & Deployment
                   </p>
                 </CardContent>
               </Card>
@@ -143,7 +143,7 @@ export function AboutPage() {
             </h2>
             <div className="prose prose-lg max-w-none">
               <p className="text-xl text-gray-700 mb-6 leading-relaxed">
-                E-com Synergy Solutions is a dynamic e-commerce service provider and consultancy firm based in USA. Founded by a team of seasoned professionals with extensive experience in procurement and logistics, we specialize in delivering tailored solutions that streamline supply chain operations, optimize efficiency, and drive sustainable growth for our clients.
+                At OT Global, we provide end-to-end supply chain management, seamlessly integrating global sourcing, procurement, logistics, and production planning, warehouse management, ERP & Data Analytics for your small and medium enterprises especially Amazon and e-commerce stores. With expertise in robust supply chain management, we optimize every aspect so you can focus on growing your brand. With over a decade of global supply chain expertise, OT Global Group brings world-class procurement and logistics solutions to businesses worldwide. Our leadership team has served in senior roles for renowned U.S. retail brands, including Monolith Brands Group and Thrasio, overseeing procurement operations worth hundreds of millions of dollars annually.
               </p>
             </div>
           </motion.div>
@@ -230,21 +230,21 @@ export function AboutPage() {
                     <div className="relative w-48 h-48 rounded-full overflow-hidden mx-auto md:mx-0">
                       <Image
                         src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop"
-                        alt="Dan Probst"
+                        alt="Bilal Asghar"
                         fill
                         className="object-cover"
                       />
                     </div>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-2xl font-bold mb-2 text-gray-900">Dan Probst</h3>
-                    <p className="text-[#00A896] font-semibold mb-6">CEO, E-com Synergy Solutions</p>
+                    <h3 className="text-2xl font-bold mb-2 text-gray-900">Bilal Asghar</h3>
+                    <p className="text-[#00A896] font-semibold mb-6">CEO, OT Global Group</p>
                     <div className="prose prose-lg max-w-none">
                       <p className="text-gray-700 leading-relaxed mb-4">
-                        Welcome to E-com Synergy Solutions. We specialize in e-commerce procurement and logistics, ensuring precise planning and proactive decisions to keep your operations on time and maintain high Amazon ratings.
+                        OT Global Group is platform for young entrepreneurs to grow and shine in the field of supply chain. We strongly believe that real business success is not just about profits measured in numbers, but it is also how these numbers are achieved and how we can improve the customers supply chain operations.
                       </p>
                       <p className="text-gray-700 leading-relaxed mb-4">
-                        Our expertise helps sellers avoid common mistakes and accelerates their Amazon brand's performance. With our tailored solutions and expert handling of AGL and AWD shipments, you gain a market edge through timely deliveries and strict compliance with Amazon requirements.
+                        Our strategy reflects our commitment to sustainable business practices by balancing growth and productivity. With an excellent track record, I can confidently claim that OT Global Group will continue to set new standards in fulfilling supply chain needs of our customers. So, you can build your business knowing that your operations have a solid footing.
                       </p>
                       <p className="text-gray-700 leading-relaxed">
                         Partner with us to enhance your supply chain efficiency and achieve sustainable growth. Let us handle the logistics, so you can focus on growing your brand.

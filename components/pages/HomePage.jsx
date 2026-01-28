@@ -483,66 +483,75 @@ export function HomePage() {
             </p>
           </motion.div>
 
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto"
-          >
-            {[
-              {
-                name: "Sarah Johnson",
-                role: "CEO, TechStart Inc.",
-                content: "OT Global transformed our supply chain operations. Their expertise in China sourcing helped us reduce costs by 35% while maintaining quality standards.",
-                rating: 5,
-                avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop&crop=face",
-              },
-              {
-                name: "Michael Chen",
-                role: "Operations Director, RetailPlus",
-                content: "The team's attention to detail and proactive communication made all the difference. We've been working with them for 3 years and couldn't be happier.",
-                rating: 5,
-                avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face",
-              },
-              {
-                name: "Emily Rodriguez",
-                role: "Founder, EcoProducts Co.",
-                content: "From sourcing to delivery, OT Global handles everything seamlessly. Their dedicated support team is always available when we need them.",
-                rating: 5,
-                avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face",
-              },
-            ].map((testimonial, index) => (
-              <motion.div key={index} variants={itemVariants}>
-                <Card className="h-full border-gray-200 hover:shadow-xl transition-all duration-300">
-                  <CardContent className="p-8">
-                    <div className="flex mb-4">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <span key={i} className="text-yellow-400 text-xl">★</span>
-                      ))}
-                    </div>
-                    <p className="text-gray-700 mb-6 text-lg leading-relaxed">
-                      "{testimonial.content}"
-                    </p>
-                    <div className="flex items-center gap-4">
-                      <div className="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
-                        <Image
-                          src={testimonial.avatar}
-                          alt={testimonial.name}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                      <div>
-                        <p className="font-semibold text-gray-900">{testimonial.name}</p>
-                        <p className="text-sm text-gray-500">{testimonial.role}</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
+          <div className="max-w-7xl mx-auto">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              plugins={[
+                Autoplay({
+                  delay: 4000,
+                }),
+              ]}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-4 md:ml-0">
+                {[
+                  {
+                    name: "Alex Thompson",
+                    role: "VP Supply Chain, Thrasio",
+                    content: "OT Global transformed our supply chain operations. Their expertise in procurement and logistics helped us reduce costs by 35% while maintaining quality standards across 25,000+ SKUs.",
+                    rating: 5,
+                    avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&h=200&fit=crop&crop=face",
+                  },
+                  {
+                    name: "Rachel Martinez",
+                    role: "Operations Director, Monolith Brands",
+                    content: "The team's attention to detail and proactive communication made all the difference. We've saved over $750K in a single year through their optimization strategies.",
+                    rating: 5,
+                    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=face",
+                  },
+                  {
+                    name: "James Wilson",
+                    role: "Founder, Cascade Strategy",
+                    content: "From sourcing to delivery, OT Global handles everything seamlessly. Their data analytics and ERP integration capabilities are exceptional.",
+                    rating: 5,
+                    avatar: "https://images.unsplash.com/photo-1556155092-8707de31f9c4?w=200&h=200&fit=crop&crop=face",
+                  },
+                ].map((testimonial, index) => (
+                  <CarouselItem key={index} className="pl-4 md:pl-6 md:basis-1/2 lg:basis-1/3">
+                    <Card className="h-full border-gray-200 hover:shadow-xl transition-all duration-300">
+                      <CardContent className="p-8">
+                        <div className="flex mb-4">
+                          {[...Array(testimonial.rating)].map((_, i) => (
+                            <span key={i} className="text-yellow-400 text-xl">★</span>
+                          ))}
+                        </div>
+                        <p className="text-gray-700 mb-6 text-lg leading-relaxed">
+                          "{testimonial.content}"
+                        </p>
+                        <div className="flex items-center gap-4">
+                          <div className="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
+                            <Image
+                              src={testimonial.avatar}
+                              alt={testimonial.name}
+                              fill
+                              className="object-cover"
+                            />
+                          </div>
+                          <div>
+                            <p className="font-semibold text-gray-900">{testimonial.name}</p>
+                            <p className="text-sm text-gray-500">{testimonial.role}</p>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+          </div>
         </div>
       </section>
 
@@ -569,32 +578,38 @@ export function HomePage() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 max-w-7xl mx-auto"
           >
             {[
               {
-                name: "David Wang",
-                role: "CEO & Founder",
-                description: "20+ years in China sourcing and supply chain management",
+                name: "Bilal Asghar",
+                role: "CEO",
+                description: "Leading OT Global Group with vision and strategic direction",
                 image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
               },
               {
-                name: "Lisa Zhang",
-                role: "Head of Operations",
-                description: "Expert in quality control and supplier management",
-                image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop",
+                name: "Danish Baig",
+                role: "COO",
+                description: "Overseeing day-to-day operations and supply chain excellence",
+                image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop",
               },
               {
-                name: "James Liu",
-                role: "Logistics Director",
-                description: "Specialized in international shipping and customs",
+                name: "Usama Mukhtar",
+                role: "CFO",
+                description: "Managing financial strategy and business growth",
                 image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop",
               },
               {
-                name: "Maria Garcia",
-                role: "Client Success Manager",
-                description: "Dedicated to ensuring client satisfaction and growth",
-                image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop",
+                name: "Meysem Tamaar",
+                role: "CTO",
+                description: "Driving technology innovation and digital transformation",
+                image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop",
+              },
+              {
+                name: "Zulqurnain Awan",
+                role: "CCO",
+                description: "Building strong client relationships and partnerships",
+                image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop",
               },
             ].map((member, index) => (
               <motion.div key={index} variants={itemVariants}>
@@ -731,8 +746,8 @@ export function HomePage() {
                   },
                 ].map((brand, index) => (
                   <CarouselItem key={index} className="pl-2 md:pl-4 basis-1/2 md:basis-1/3 lg:basis-1/5">
-                    <div className="flex flex-col items-center justify-center p-6 bg-gray-50 rounded-xl border border-gray-200 hover:border-[#00A896] hover:shadow-lg transition-all duration-300 h-32">
-                      <div className="relative w-full h-20 mb-2">
+                    <div className="flex flex-col items-center justify-center p-8 bg-gray-50 rounded-xl border border-gray-200 hover:border-[#00A896] hover:shadow-lg transition-all duration-300 h-48">
+                      <div className="relative w-full h-32 mb-3">
                         <Image
                           src={brand.logo}
                           alt={brand.name}
@@ -741,13 +756,11 @@ export function HomePage() {
                           sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
                         />
                       </div>
-                      <p className="text-xs text-gray-600 font-medium text-center mt-2">{brand.name}</p>
+                      <p className="text-sm text-gray-600 font-medium text-center">{brand.name}</p>
                     </div>
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="left-0 md:left-4 top-1/2 -translate-y-1/2 h-12 w-12 border-2 border-gray-300 bg-white hover:bg-gray-50 hover:border-[#00A896] shadow-lg z-10 [&>svg]:h-5 [&>svg]:w-5" />
-              <CarouselNext className="right-0 md:right-4 top-1/2 -translate-y-1/2 h-12 w-12 border-2 border-gray-300 bg-white hover:bg-gray-50 hover:border-[#00A896] shadow-lg z-10 [&>svg]:h-5 [&>svg]:w-5" />
             </Carousel>
           </div>
         </div>

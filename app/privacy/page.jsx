@@ -1,8 +1,8 @@
 import { PrivacyPage } from "@/components/pages/PrivacyPage";
 
 export const metadata = {
-  title: "Privacy Policy - E-com Synergy Solutions",
-  description: "Privacy policy and data protection information for E-com Synergy Solutions",
+  title: "Privacy Policy - OT Global Group",
+  description: "Privacy policy and data protection information for OT Global Group",
 };
 
 export default function Privacy() {

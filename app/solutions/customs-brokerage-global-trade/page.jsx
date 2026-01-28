@@ -1,5 +1,6 @@
 import { FileSearch, Globe2, ShieldCheck, Scale, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
@@ -54,6 +55,22 @@ export default function CustomsBrokerageGlobalTradePage() {
               Keep your cross-border shipments compliant and on schedule with structured customs and
               trade management.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Image Section */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+          <div className="relative w-full h-64 md:h-96 lg:h-[500px] rounded-2xl overflow-hidden shadow-xl">
+            <Image
+              src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=600&fit=crop"
+              alt="Customs Brokerage & Global Trade"
+              fill
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
           </div>
         </div>
       </section>

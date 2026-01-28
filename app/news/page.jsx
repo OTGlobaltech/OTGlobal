@@ -1,7 +1,7 @@
 import { NewsPage } from "@/components/pages/NewsPage";
 
 export const metadata = {
-  title: "News & Insights - E-com Synergy Solutions",
+  title: "News & Insights - OT Global Group",
   description: "Latest news, insights, and best practices in supply chain management",
 };
 
