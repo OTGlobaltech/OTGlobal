@@ -230,7 +230,7 @@ export function AboutPage() {
                     <div className="relative w-48 h-48 rounded-full overflow-hidden mx-auto md:mx-0">
                       <Image
                         src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop"
-                        alt="Bilal Asghar"
+                        alt="John Doe"
                         fill
                         className="object-cover"
                       />

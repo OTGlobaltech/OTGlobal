@@ -582,19 +582,19 @@ export function HomePage() {
           >
             {[
               {
-                name: "Bilal Asghar",
+                name: "John Doe",
                 role: "CEO",
                 description: "Leading OT Global Group with vision and strategic direction",
                 image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
               },
               {
-                name: "Usama Mukhtar",
+                name: "Micheal Wiebe",
                 role: "CFO",
                 description: "Managing financial strategy and business growth",
                 image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop",
               },
               {
-                name: "Zulqurnain Afzal",
+                name: "Tyler Kent",
                 role: "CCO",
                 description: "Building strong client relationships and partnerships",
                 image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop",
