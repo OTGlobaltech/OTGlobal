@@ -676,6 +676,83 @@ export function HomePage() {
         </div>
       </section>
 
+      {/* Brands/Clientele Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl lg:text-5xl mb-4 font-bold text-gray-900">
+              Trusted by Leading Brands
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We&apos;re proud to partner with industry leaders and innovative companies worldwide
+            </p>
+          </motion.div>
+
+          <div className="max-w-7xl mx-auto">
+            <Carousel
+              opts={{
+                align: "center",
+                loop: true,
+              }}
+              plugins={[
+                Autoplay({
+                  delay: 2000,
+                }),
+              ]}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-2 md:-ml-4">
+                {[
+                  {
+                    name: "Thrasio",
+                    logo: "/thrasio_logo.jpeg",
+                  },
+                  {
+                    name: "Monolith Brands",
+                    logo: "/monolith_brands_logo.jpeg",
+                  },
+                  {
+                    name: "Cascade Strategy",
+                    logo: "/cascadestrategy_logo.jpeg",
+                  },
+                  {
+                    name: "Go North Group",
+                    logo: "/go_north_group_logo.jpeg",
+                  },
+                  {
+                    name: "Breath Labs",
+                    logo: "/breathlabs_logo.jpeg",
+                  },
+                ].map((brand, index) => (
+                  <CarouselItem key={index} className="pl-2 md:pl-4 basis-1/2 md:basis-1/3 lg:basis-1/5">
+                    <div className="flex flex-col items-center justify-center p-6 bg-gray-50 rounded-xl border border-gray-200 hover:border-[#00A896] hover:shadow-lg transition-all duration-300 h-32">
+                      <div className="relative w-full h-20 mb-2">
+                        <Image
+                          src={brand.logo}
+                          alt={brand.name}
+                          fill
+                          className="object-contain"
+                          sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                        />
+                      </div>
+                      <p className="text-xs text-gray-600 font-medium text-center mt-2">{brand.name}</p>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="left-0 md:left-4 top-1/2 -translate-y-1/2 h-12 w-12 border-2 border-gray-300 bg-white hover:bg-gray-50 hover:border-[#00A896] shadow-lg z-10 [&>svg]:h-5 [&>svg]:w-5" />
+              <CarouselNext className="right-0 md:right-4 top-1/2 -translate-y-1/2 h-12 w-12 border-2 border-gray-300 bg-white hover:bg-gray-50 hover:border-[#00A896] shadow-lg z-10 [&>svg]:h-5 [&>svg]:w-5" />
+            </Carousel>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="bg-gradient-to-r from-[#00A896] to-[#008c7a] text-white py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
