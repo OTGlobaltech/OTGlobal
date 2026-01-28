@@ -67,7 +67,7 @@ export function HomePage() {
   const services = [
     {
       icon: Globe,
-      title: "China Sourcing",
+      title: "Sourcing",
       description: "Access to verified manufacturers and suppliers across China with competitive pricing",
     },
     {
@@ -398,7 +398,7 @@ export function HomePage() {
               ]}
               className="w-full"
             >
-              <CarouselPrevious className="left-0 md:left-4 h-14 w-14 border-2 border-gray-300 bg-white hover:bg-gray-50 hover:border-[#00A896] shadow-lg z-10 [&>svg]:h-6 [&>svg]:w-6" />
+              <CarouselPrevious className="left-0 md:left-4 top-1/2 -translate-y-1/2 h-14 w-14 border-2 border-gray-300 bg-white hover:bg-gray-50 hover:border-[#00A896] shadow-lg z-10 [&>svg]:h-6 [&>svg]:w-6" />
               <CarouselContent className="-ml-4 md:ml-0">
                 {carouselImages.map((image, index) => (
                   <CarouselItem key={index} className="pl-4 md:pl-6 md:basis-1/2 lg:basis-1/3">
@@ -417,7 +417,7 @@ export function HomePage() {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselNext className="right-0 md:right-4 h-14 w-14 border-2 border-gray-300 bg-white hover:bg-gray-50 hover:border-[#00A896] shadow-lg z-10 [&>svg]:h-6 [&>svg]:w-6" />
+              <CarouselNext className="right-0 md:right-4 top-1/2 -translate-y-1/2 h-14 w-14 border-2 border-gray-300 bg-white hover:bg-gray-50 hover:border-[#00A896] shadow-lg z-10 [&>svg]:h-6 [&>svg]:w-6" />
             </Carousel>
           </div>
         </div>
@@ -686,7 +686,7 @@ export function HomePage() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl lg:text-5xl mb-6 font-bold">
-              Ready to Start Your China Sourcing Journey?
+              Ready to Start Your Sourcing Journey?
             </h2>
             <p className="text-xl text-teal-100 mb-10 max-w-2xl mx-auto">
               Join hundreds of businesses that trust OT Global for their manufacturing and sourcing needs

@@ -14,6 +14,9 @@ import {
   Clock,
   Award,
   Zap,
+  Database,
+  LineChart,
+  Layers,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -125,6 +128,77 @@ export function ServicesPage() {
       icon: Zap,
       title: "HTS Code Auditing",
       description: "Ensure accurate tariff classifications to avoid customs delays and penalties.",
+    },
+  ];
+
+  const solutionsServices = [
+    {
+      icon: Globe,
+      title: "Global Sourcing Services",
+      description:
+        "We offer alternative sources and access to specialized materials and products worldwide. With deep industry expertise, we can source the materials you need while offering the right mix of cost-effectiveness, quality, and dependable supply—always with compliance to safety and environmental regulations.",
+      body: [
+        "Dedicated sourcing specialists who share knowledge of the latest developments and technologies.",
+        "Reach and stability of supply as a partner operating across key economic zones.",
+        "Strong understanding of local regulatory challenges in the markets we serve.",
+      ],
+    },
+    {
+      icon: Truck,
+      title: "Logistics Services",
+      description:
+        "Logistical services lie at the core of any supply chain organization. While we are not a pure logistics company, our deep understanding and long experience managing logistics for operations of varying scale allows us to design tailor-made strategies that directly target your pain points.",
+      body: [
+        "Support in identifying logistics partners and freight forwarders at the best price.",
+        "Strategies that take into account current and emerging supply chain disruptions.",
+        "Alignment between logistics decisions and your broader supply chain strategy.",
+      ],
+    },
+    {
+      icon: LineChart,
+      title: "Sales Forecasting",
+      description:
+        "We manage sales forecasting through a structured monthly process, continuously refining forecasts based on historical data, statistical models, event analysis, dynamic regression, and expert insights.",
+      body: [
+        "Highlight key factors such as seasonality, trends, opportunities, and risks for each SKU.",
+        "Incorporate promotions, business events, and launches directly into the forecast.",
+        "Continuously monitor and improve forecast accuracy over time.",
+      ],
+    },
+    {
+      icon: Layers,
+      title: "Inventory Planning",
+      description:
+        "For inventory planning, we use a robust, Excel-based system that calculates recommended order quantities for suppliers on a monthly basis.",
+      body: [
+        "Consider projected demand, current inventory, incoming shipments, lead times, MOQs, and container constraints.",
+        "Design pricing and order strategies that balance order size and ordering frequency.",
+        "Provide clear recommendations on product promotions, discontinuations, and FBA or DC replenishment plans.",
+      ],
+    },
+    {
+      icon: Package,
+      title: "Sourcing Products from China for Amazon or Private Label",
+      description:
+        "Many clients have a strong product vision but struggle to identify and shortlist the right suppliers. This is where OT Global Group makes a difference.",
+      body: [
+        "Supplier research and validation for Amazon, ecommerce, and private-label brands.",
+        "Custom product development, packaging, and logo/brand applications.",
+        "Contract negotiations, favorable Incoterms (EXW, FOB, DDP), product sampling, and logistics strategy.",
+        "A true one-window solution for all of your supply chain needs.",
+      ],
+    },
+    {
+      icon: Database,
+      title: "Data Analytics & Reporting",
+      description:
+        "Gain access to an optimized supply chain tracking solution covering inventory, procurement, logistics, and financial performance.",
+      body: [
+        "Inventory tracking: monitor current, incoming, and ordered stock.",
+        "Procurement tracker: view status of each PO and associated actions.",
+        "Payables and logistics trackers for payments, outstanding amounts, and shipment statuses.",
+        "COGS & landed cost visibility, plus dashboards for suppliers and freight partners.",
+      ],
     },
   ];
 
@@ -260,6 +334,88 @@ export function ServicesPage() {
                 </Card>
               </motion.div>
             ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Solutions Services Offering */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl lg:text-5xl font-bold mb-4 text-gray-900">
+              Solutions Services Offering
+            </h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto">
+              A complete ecosystem of services that connects global sourcing, logistics, planning,
+              data, and technology into one cohesive supply chain operation.
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto"
+          >
+            {solutionsServices.map((service, index) => (
+              <motion.div key={index} variants={itemVariants}>
+                <Card className="h-full border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                  <CardHeader>
+                    <div className="bg-gradient-to-br from-[#00A896]/10 to-[#008c7a]/10 w-14 h-14 rounded-xl flex items-center justify-center mb-4">
+                      <service.icon className="text-[#00A896]" size={26} />
+                    </div>
+                    <CardTitle className="text-xl mb-2">{service.title}</CardTitle>
+                    <CardDescription className="text-base text-gray-700">
+                      {service.description}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2">
+                      {service.body.map((point, idx) => (
+                        <li key={idx} className="flex items-start gap-2">
+                          <CheckCircle2 className="text-[#00A896] mt-1 flex-shrink-0" size={16} />
+                          <span className="text-sm text-gray-600">{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* One-stop shop strip */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mt-16 max-w-5xl mx-auto"
+          >
+            <div className="bg-gradient-to-r from-[#00A896] to-[#008c7a] rounded-2xl px-8 py-10 text-white shadow-xl">
+              <h3 className="text-2xl lg:text-3xl font-bold mb-4">
+                Your One-Stop Shop for All Supply Chain Operations
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-sm font-medium">
+                <span>Global Sourcing Services</span>
+                <span>Logistics Planning &amp; Support</span>
+                <span>Demand &amp; Production Planning</span>
+                <span>Data Analysis &amp; Reporting</span>
+                <span>ERP Integration &amp; Process Development</span>
+                <span>Supplier Management &amp; Scorecards</span>
+              </div>
+              <p className="mt-4 text-teal-50 text-sm sm:text-base">
+                Get next-generation technology-enabled supply chain solutions tailored to your
+                brand&apos;s growth ambitions.
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>
