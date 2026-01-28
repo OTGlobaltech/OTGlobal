@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Warehouse, PackageSearch, Truck, Globe2, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -46,12 +43,7 @@ export default function DistributionFulfillmentPage() {
       {/* Hero */}
       <section className="bg-gradient-to-br from-[#00A896] to-[#008c7a] text-white py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-3xl"
-          >
+          <div className="max-w-3xl">
             <p className="text-sm font-semibold tracking-[0.25em] uppercase text-teal-100 mb-4">
               Solutions
             </p>
@@ -62,7 +54,7 @@ export default function DistributionFulfillmentPage() {
               Seamless distribution and fulfillment operations that keep your products available,
               compliant, and on time—across Amazon FBA, DTC, and wholesale channels.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -70,12 +62,7 @@ export default function DistributionFulfillmentPage() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
           <div className="grid gap-10 lg:grid-cols-[2fr,1.3fr] items-start">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
+            <div>
               <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-gray-900">
                 Designed for Modern Ecommerce &amp; Retail
               </h2>
@@ -111,15 +98,9 @@ export default function DistributionFulfillmentPage() {
                   </Button>
                 </Link>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="space-y-4"
-            >
+            <div className="space-y-4">
               {pillars.map((pillar, idx) => (
                 <Card key={idx} className="border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                   <CardHeader className="flex flex-row items-start gap-3 pb-3">
@@ -135,7 +116,7 @@ export default function DistributionFulfillmentPage() {
                   </CardHeader>
                 </Card>
               ))}
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
