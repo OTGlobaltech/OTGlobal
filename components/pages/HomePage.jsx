@@ -1,3 +1,4 @@
+// components/pages/HomePage.jsx
 "use client";
 
 import { useState, useRef, useEffect } from "react";
@@ -167,7 +168,7 @@ export function HomePage() {
   // Place your video file in: public/videos/
   // In Next.js, public folder files are served from root, so use: "/videos/filename.mp4"
   const videoSource = "/videos/Supply-Chain-Concept-I-Explainer.mp4"; // Local video path
-  
+
   // Option 2: Use YouTube video (Alternative)
   // For YouTube, you'll need to extract the video ID and use YouTube embed
   // Example: https://www.youtube.com/watch?v=VIDEO_ID
@@ -212,7 +213,7 @@ export function HomePage() {
               playsInline
               preload="auto"
               className="absolute inset-0 w-full h-full object-cover"
-              style={{ 
+              style={{
                 objectFit: 'cover',
                 width: '100%',
                 height: '100%',
@@ -251,14 +252,14 @@ export function HomePage() {
               />
             </video>
           )}
-          
+
           {/* Fallback gradient background if video doesn't load - Behind video */}
           <div className="absolute inset-0 bg-gradient-to-br from-[#00A896] to-[#008c7a]" style={{ zIndex: 0 }}></div>
-          
+
           {/* Very subtle dark overlay only for text readability - minimal opacity */}
           <div className="absolute inset-0 bg-black/20" style={{ zIndex: 2 }}></div>
         </div>
-        
+
         {/* Content - Above video with higher z-index */}
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 relative" style={{ zIndex: 10 }}>
           <motion.div
@@ -274,7 +275,7 @@ export function HomePage() {
               </span>
             </h1>
             <p className="text-lg sm:text-xl lg:text-2xl text-white/95 mb-10 max-w-3xl mx-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)] font-medium leading-relaxed">
-              OT Global connects businesses worldwide with premium Chinese manufacturers. 
+              OT Global connects businesses worldwide with premium Chinese manufacturers.
               Reduce costs, ensure quality, and scale your supply chain with confidence.
             </p>
             <motion.div
@@ -731,6 +732,10 @@ export function HomePage() {
                   {
                     name: "Breath Labs",
                     logo: "/breathlabs_logo.jpeg",
+                  },
+                  {
+                    name: "BazarLab",
+                    logo: "/bazarlab_logo.png",
                   },
                 ].map((brand, index) => (
                   <CarouselItem key={index} className="pl-2 md:pl-4 basis-1/2 md:basis-1/3 lg:basis-1/5">

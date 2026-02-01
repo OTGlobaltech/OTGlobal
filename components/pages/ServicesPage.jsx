@@ -1,3 +1,4 @@
+// components/pages/ServicesPage.jsx
 "use client";
 
 import { useState, useRef, useEffect } from "react";
@@ -22,6 +23,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 
 export function ServicesPage() {
   const videoRef = useRef(null);
@@ -245,10 +247,10 @@ export function ServicesPage() {
 
   const iconVariants = {
     rest: { scale: 1, rotate: 0 },
-    hover: { 
-      scale: 1.1, 
+    hover: {
+      scale: 1.1,
       rotate: [0, -10, 10, -10, 0],
-      transition: { 
+      transition: {
         duration: 0.5,
         ease: "easeInOut"
       }
@@ -257,7 +259,7 @@ export function ServicesPage() {
 
   const cardVariants = {
     rest: { scale: 1, y: 0 },
-    hover: { 
+    hover: {
       scale: 1.02,
       y: -8,
       transition: {
@@ -288,7 +290,7 @@ export function ServicesPage() {
         </div>
       </section>
 
-      {/* Video Showcase Section */}
+      {/* Image Showcase Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -306,46 +308,15 @@ export function ServicesPage() {
                 Watch how we streamline global sourcing, logistics, and supply chain management
               </p>
             </div>
-            <div className="relative w-full max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl bg-gray-900">
-              <div className="relative aspect-video w-full">
-              <video
-                ref={videoRef}
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
-                className="absolute inset-0 w-full h-full object-cover"
-                onLoadedData={(e) => {
-                  e.target.play().catch(() => {
-                    // Autoplay was prevented, will be handled by useEffect
-                  });
-                }}
-                onError={(e) => {
-                  console.error("Video loading error:", e);
-                }}
-                onCanPlay={() => {
-                  if (videoRef.current) {
-                    videoRef.current.play().catch(() => {
-                      console.log("Video play prevented, will retry on user interaction");
-                    });
-                  }
-                }}
-              >
-                <source src="/videos/Supply-Chain-Concept-I-Explainer.mp4" type="video/mp4" />
-                {/* Fallback video options if local video doesn't exist */}
-                <source
-                  src="https://videos.pexels.com/video-files/3045163/3045163-hd_1920_1080_30fps.mp4"
-                  type="video/mp4"
-                />
-                <source
-                  src="https://videos.pexels.com/video-files/2491284/2491284-hd_1920_1080_30fps.mp4"
-                  type="video/mp4"
-                />
-              </video>
-              </div>
-              {/* Subtle overlay gradient at bottom for better visual integration */}
-              <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-50 to-transparent pointer-events-none"></div>
+            <div className="relative w-full h-64 md:h-96 lg:h-[500px] rounded-2xl overflow-hidden shadow-xl">
+              <Image
+                src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200&h=600&fit=crop"
+                alt="Supply Chain Operations"
+                fill
+                className="object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
             </div>
           </motion.div>
         </div>
@@ -377,8 +348,8 @@ export function ServicesPage() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {mainServices.map((service, index) => (
-              <motion.div 
-                key={index} 
+              <motion.div
+                key={index}
                 variants={itemVariants}
                 whileHover="hover"
                 initial="rest"
@@ -387,26 +358,26 @@ export function ServicesPage() {
                 <motion.div variants={cardVariants}>
                   <Card className="h-full border-gray-200 hover:shadow-xl transition-all duration-300 hover:border-[#00A896]">
                     <CardHeader>
-                      <motion.div 
+                      <motion.div
                         className="bg-teal-100 w-16 h-16 rounded-xl flex items-center justify-center mb-4"
                         variants={iconVariants}
                       >
                         <service.icon className="text-[#00A896]" size={32} />
                       </motion.div>
-                    <CardTitle className="text-2xl mb-2">{service.title}</CardTitle>
-                    <CardDescription className="text-base">{service.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2">
-                      {service.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-start gap-2">
-                          <CheckCircle2 className="text-[#00A896] mt-1 flex-shrink-0" size={16} />
-                          <span className="text-sm text-gray-600">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
+                      <CardTitle className="text-2xl mb-2">{service.title}</CardTitle>
+                      <CardDescription className="text-base">{service.description}</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <ul className="space-y-2">
+                        {service.features.map((feature, idx) => (
+                          <li key={idx} className="flex items-start gap-2">
+                            <CheckCircle2 className="text-[#00A896] mt-1 flex-shrink-0" size={16} />
+                            <span className="text-sm text-gray-600">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
                 </motion.div>
               </motion.div>
             ))}
@@ -440,8 +411,8 @@ export function ServicesPage() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {supplyChainServices.map((service, index) => (
-              <motion.div 
-                key={index} 
+              <motion.div
+                key={index}
                 variants={itemVariants}
                 whileHover="hover"
                 initial="rest"
@@ -450,16 +421,16 @@ export function ServicesPage() {
                 <motion.div variants={cardVariants}>
                   <Card className="h-full border-gray-200 hover:shadow-lg transition-all duration-300 hover:border-[#00A896]">
                     <CardHeader>
-                      <motion.div 
+                      <motion.div
                         className="bg-gradient-to-br from-[#00A896] to-[#008c7a] w-16 h-16 rounded-xl flex items-center justify-center mb-4"
                         variants={iconVariants}
                       >
                         <service.icon className="text-white" size={32} />
                       </motion.div>
-                    <CardTitle className="text-xl mb-2">{service.title}</CardTitle>
-                    <CardDescription>{service.description}</CardDescription>
-                  </CardHeader>
-                </Card>
+                      <CardTitle className="text-xl mb-2">{service.title}</CardTitle>
+                      <CardDescription>{service.description}</CardDescription>
+                    </CardHeader>
+                  </Card>
                 </motion.div>
               </motion.div>
             ))}
@@ -494,8 +465,8 @@ export function ServicesPage() {
             className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto"
           >
             {solutionsServices.map((service, index) => (
-              <motion.div 
-                key={index} 
+              <motion.div
+                key={index}
                 variants={itemVariants}
                 whileHover="hover"
                 initial="rest"
@@ -504,28 +475,28 @@ export function ServicesPage() {
                 <motion.div variants={cardVariants}>
                   <Card className="h-full border-gray-200 hover:shadow-xl transition-all duration-300 hover:border-[#00A896]">
                     <CardHeader>
-                      <motion.div 
+                      <motion.div
                         className="bg-gradient-to-br from-[#00A896]/10 to-[#008c7a]/10 w-14 h-14 rounded-xl flex items-center justify-center mb-4"
                         variants={iconVariants}
                       >
                         <service.icon className="text-[#00A896]" size={26} />
                       </motion.div>
-                    <CardTitle className="text-xl mb-2">{service.title}</CardTitle>
-                    <CardDescription className="text-base text-gray-700">
-                      {service.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2">
-                      {service.body.map((point, idx) => (
-                        <li key={idx} className="flex items-start gap-2">
-                          <CheckCircle2 className="text-[#00A896] mt-1 flex-shrink-0" size={16} />
-                          <span className="text-sm text-gray-600">{point}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
+                      <CardTitle className="text-xl mb-2">{service.title}</CardTitle>
+                      <CardDescription className="text-base text-gray-700">
+                        {service.description}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <ul className="space-y-2">
+                        {service.body.map((point, idx) => (
+                          <li key={idx} className="flex items-start gap-2">
+                            <CheckCircle2 className="text-[#00A896] mt-1 flex-shrink-0" size={16} />
+                            <span className="text-sm text-gray-600">{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
                 </motion.div>
               </motion.div>
             ))}
@@ -539,12 +510,12 @@ export function ServicesPage() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="mt-16 max-w-5xl mx-auto"
           >
-            <motion.div 
+            <motion.div
               className="bg-gradient-to-r from-[#00A896] to-[#008c7a] rounded-2xl px-8 py-10 text-white shadow-xl"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
-              <motion.h3 
+              <motion.h3
                 className="text-2xl lg:text-3xl font-bold mb-4"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -575,7 +546,7 @@ export function ServicesPage() {
                   </motion.span>
                 ))}
               </div>
-              <motion.p 
+              <motion.p
                 className="mt-4 text-teal-50 text-sm sm:text-base"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -634,9 +605,9 @@ export function ServicesPage() {
                   whileHover={{ scale: 1.05, y: -5 }}
                   className="text-center relative z-10"
                 >
-                  <motion.div 
+                  <motion.div
                     className="bg-gradient-to-br from-[#00A896] to-[#008c7a] w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg"
-                    whileHover={{ 
+                    whileHover={{
                       rotate: 360,
                       boxShadow: "0 10px 30px rgba(0, 168, 150, 0.4)"
                     }}

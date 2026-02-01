@@ -1,3 +1,4 @@
+// components/layout/Header.jsx
 "use client";
 
 import { useState } from "react";
@@ -90,11 +91,10 @@ export function Header() {
             {/* Home first */}
             <Link
               href="/"
-              className={`text-sm transition-colors ${
-                isActive("/")
+              className={`text-sm transition-colors ${isActive("/")
                   ? "text-[#00A896]"
                   : "text-gray-600 hover:text-gray-900"
-              }`}
+                }`}
             >
               Home
             </Link>
@@ -108,12 +108,14 @@ export function Header() {
                 Solutions
                 <span className="text-[10px] translate-y-px">▼</span>
               </button>
-              <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-opacity transition-visibility duration-150 absolute left-1/2 -translate-x-1/2 mt-3 w-72 bg-white rounded-xl shadow-xl border border-gray-100 py-3 z-50">
+              {/* Invisible bridge to prevent gap between button and dropdown */}
+              <div className="absolute left-0 right-0 h-4 bg-transparent"></div>
+              <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 delay-100 absolute left-1/2 -translate-x-1/2 mt-4 w-72 bg-white rounded-xl shadow-xl border border-gray-100 py-3 z-50">
                 {solutionItems.map((item) => (
                   <Link
                     key={item.path}
                     href={item.path}
-                    className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#00A896]"
+                    className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#00A896] transition-colors"
                   >
                     {item.name}
                   </Link>
@@ -128,11 +130,10 @@ export function Header() {
                 <Link
                   key={item.path}
                   href={item.path}
-                  className={`text-sm transition-colors ${
-                    isActive(item.path)
+                  className={`text-sm transition-colors ${isActive(item.path)
                       ? "text-[#00A896]"
                       : "text-gray-600 hover:text-gray-900"
-                  }`}
+                    }`}
                 >
                   {item.name}
                 </Link>
@@ -217,11 +218,10 @@ export function Header() {
                 setMobileMenuOpen(false);
                 setMobileSolutionsOpen(false);
               }}
-              className={`block w-full text-left px-4 py-2 text-sm ${
-                isActive("/")
+              className={`block w-full text-left px-4 py-2 text-sm ${isActive("/")
                   ? "text-[#00A896] bg-teal-50"
                   : "text-gray-600 hover:bg-gray-50"
-              }`}
+                }`}
             >
               Home
             </Link>
@@ -263,11 +263,10 @@ export function Header() {
                   key={item.path}
                   href={item.path}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`block w-full text-left px-4 py-2 text-sm ${
-                    isActive(item.path)
+                  className={`block w-full text-left px-4 py-2 text-sm ${isActive(item.path)
                       ? "text-[#00A896] bg-teal-50"
                       : "text-gray-600 hover:bg-gray-50"
-                  }`}
+                    }`}
                 >
                   {item.name}
                 </Link>
