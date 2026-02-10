@@ -98,9 +98,9 @@ export function AboutPage() {
                   <div className="bg-[#00A896] w-16 h-16 rounded-xl flex items-center justify-center mb-6">
                     <Target className="text-white" size={32} />
                   </div>
-                  <h2 className="text-3xl font-bold mb-4 text-gray-900">Our Vision</h2>
+                  <h2 className="text-3xl font-bold mb-4 text-gray-900">Our Mission</h2>
                   <p className="text-lg text-gray-700 leading-relaxed">
-                    Pursuing Excellence in Supply Chain Operations
+                    To help retail brands scale faster and operate leaner by delivering reliable, end-to-end supply chain execution through skilled Virtual Assistants.
                   </p>
                 </CardContent>
               </Card>
@@ -117,9 +117,22 @@ export function AboutPage() {
                   <div className="bg-[#00A896] w-16 h-16 rounded-xl flex items-center justify-center mb-6">
                     <Zap className="text-white" size={32} />
                   </div>
-                  <h2 className="text-3xl font-bold mb-4 text-gray-900">Our Mission</h2>
-                  <p className="text-lg text-gray-700 leading-relaxed">
-                    Foster Technical Innovation, Adaption & Deployment
+                  <h2 className="text-3xl font-bold mb-4 text-gray-900">Our Approach</h2>
+                  <ul className="space-y-3 mt-4">
+                    {[
+                      "Execution-first mindset",
+                      "Clear SOPs, KPIs, and reporting",
+                      "Seamless integration with client teams",
+                      "Flexible and scalable engagement models"
+                    ].map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <CheckCircle2 className="text-[#00A896] mt-1 flex-shrink-0" size={18} />
+                        <span className="text-gray-700 text-lg">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="text-lg text-gray-700 leading-relaxed mt-4 font-medium">
+                    We don’t just support supply chains—we run them efficiently.
                   </p>
                 </CardContent>
               </Card>
@@ -139,11 +152,17 @@ export function AboutPage() {
             className="max-w-4xl mx-auto"
           >
             <h2 className="text-3xl lg:text-5xl font-bold mb-8 text-center text-gray-900">
-              About Our Company
+              About OT Global
             </h2>
             <div className="prose prose-lg max-w-none">
               <p className="text-xl text-gray-700 mb-6 leading-relaxed">
-                At OT Global, we provide end-to-end supply chain management, seamlessly integrating global sourcing, procurement, logistics, and production planning, warehouse management, ERP & Data Analytics for your small and medium enterprises especially Amazon and e-commerce stores. With expertise in robust supply chain management, we optimize every aspect so you can focus on growing your brand. With over a decade of global supply chain expertise, OT Global Group brings world-class procurement and logistics solutions to businesses worldwide. Our leadership team has served in senior roles for renowned U.S. retail brands, including Monolith Brands Group and Thrasio, overseeing procurement operations worth hundreds of millions of dollars annually.
+                OT Global is a supply chain services company specializing in Virtual Assistant–based operational support for retail and ecommerce brands.
+              </p>
+              <p className="text-xl text-gray-700 mb-6 leading-relaxed">
+                Our team consists of experienced supply chain professionals with over 10 years of industry experience, having worked closely with teams in the United States and global markets.
+              </p>
+              <p className="text-xl text-gray-700 mb-6 leading-relaxed">
+                We understand the challenges of scaling retail operations—tight margins, rising labor costs, and operational complexity. OT Global was built to solve these challenges by providing cost-effective, execution-focused supply chain support.
               </p>
             </div>
           </motion.div>

@@ -269,14 +269,14 @@ export function HomePage() {
             className="max-w-4xl mx-auto text-center"
           >
             <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl mb-6 font-bold leading-tight">
-              <span className="block mb-2 text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">Your Gateway to</span>
+              <span className="block mb-2 text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">Supply Chain</span>
               <span className="block bg-gradient-to-r from-white via-teal-50 to-white bg-clip-text text-transparent drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
-                Manufacturing Excellence
+                Built for Scale
               </span>
             </h1>
             <p className="text-lg sm:text-xl lg:text-2xl text-white/95 mb-10 max-w-3xl mx-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)] font-medium leading-relaxed">
-              OT Global connects businesses worldwide with premium Chinese manufacturers.
-              Reduce costs, ensure quality, and scale your supply chain with confidence.
+              End-to-end supply chain Virtual Assistants for retail and Amazon FBA brands.
+              We help fast-growing companies reduce headcount costs, improve execution, and scale operations with experienced supply chain professionals—at under USD 20/hour.
             </p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -289,16 +289,16 @@ export function HomePage() {
                   size="lg"
                   className="bg-white text-[#00A896] hover:bg-gray-50 hover:scale-110 hover:shadow-2xl transition-all duration-300 text-lg font-semibold px-8 py-6 rounded-lg shadow-[0_8px_24px_rgba(0,0,0,0.3)] border-0"
                 >
-                  Request a Quote <ArrowRight className="ml-2" size={20} />
+                  Get a Dedicated Supply Chain VA <ArrowRight className="ml-2" size={20} />
                 </Button>
               </Link>
-              <Link href="/services">
+              <Link href="/contact">
                 <Button
                   size="lg"
                   variant="outline"
                   className="border-2 border-white/90 text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 hover:border-white hover:scale-110 hover:shadow-2xl transition-all duration-300 text-lg font-semibold px-8 py-6 rounded-lg shadow-[0_8px_24px_rgba(0,0,0,0.3)]"
                 >
-                  Our Services
+                  Talk to Our Team
                 </Button>
               </Link>
             </motion.div>
@@ -338,10 +338,10 @@ export function HomePage() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl lg:text-5xl text-gray-900 mb-4 font-bold">
-              How OT Global Works
+              What We Do
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We simplify the complexity of China sourcing and manufacturing with our proven approach
+              From forecast to fulfillment—we handle execution.
             </p>
           </motion.div>
 
@@ -352,7 +352,23 @@ export function HomePage() {
             viewport={{ once: true }}
             className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"
           >
-            {overviewPoints.map((point, index) => (
+            {[
+              {
+                icon: TrendingUp,
+                title: "Demand & Supply Planning",
+                description: "Demand forecasting, supply planning, and replenishment management."
+              },
+              {
+                icon: Package,
+                title: "Operations Logicstics",
+                description: "Inventory management, procurement, vendor coordination, and logistics support."
+              },
+              {
+                icon: Target,
+                title: "Systems & Reporting",
+                description: "Warehouse inbound/outbound operations, reporting, dashboards, and system updates."
+              }
+            ].map((point, index) => (
               <motion.div key={index} variants={itemVariants}>
                 <Card className="h-full border-gray-200 hover:shadow-xl hover:border-[#00A896] transition-all duration-300 group">
                   <CardContent className="p-8 text-center">
@@ -366,6 +382,49 @@ export function HomePage() {
               </motion.div>
             ))}
           </motion.div>
+        </div>
+      </section>
+
+      {/* Scale Your Supply Chain Section (New) */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-gray-900">
+                Scale Your Supply Chain Without Scaling Headcount
+              </h2>
+              <div className="prose prose-lg text-gray-600">
+                <p className="mb-4">
+                  OT Global provides trained Virtual Assistants (VAs) who manage day-to-day supply chain execution across planning, procurement, logistics, and inventory operations.
+                </p>
+                <p>
+                  Our VAs work as an extension of your internal team—allowing you to stay lean, agile, and cost-efficient. Built for retail brands, Amazon FBA sellers, and aggregators operating at scale.
+                </p>
+              </div>
+              <Link href="/contact" className="inline-block mt-8">
+                <Button className="bg-[#00A896] hover:bg-[#008c7a] text-white">Let's Talk</Button>
+              </Link>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative h-[400px] rounded-2xl overflow-hidden shadow-xl"
+            >
+              <Image
+                src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1632&q=80"
+                alt="Supply Chain Team"
+                fill
+                className="object-cover"
+              />
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -651,10 +710,10 @@ export function HomePage() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl lg:text-5xl mb-4 font-bold">
-              Why Partner with OT Global?
+              Why OT Global
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              We bridge the gap between your business and China's manufacturing powerhouse
+              Strategic advantages for your supply chain
             </p>
           </motion.div>
 
@@ -663,16 +722,23 @@ export function HomePage() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
           >
-            {whyChoose.map((item, index) => (
+            {[
+              { title: "Experience", desc: "10+ years of supply chain experience" },
+              { title: "Expertise", desc: "Retail & Amazon FBA expertise" },
+              { title: "Dedicated Resources", desc: "Dedicated resources (not shared pools)" },
+              { title: "Cost Efficiency", desc: "Under $20/hour pricing" },
+              { title: "Savings", desc: "40–60% headcount cost savings" },
+              { title: "Execution", desc: "Let Your Team Focus on Strategy, We Handle the Execution" }
+            ].map((item, index) => (
               <motion.div key={index} variants={itemVariants} className="flex gap-4 group">
                 <div className="flex-shrink-0">
                   <CheckCircle2 className="text-[#00A896] group-hover:scale-110 transition-transform duration-300" size={28} />
                 </div>
                 <div>
                   <h3 className="text-2xl mb-2 font-semibold">{item.title}</h3>
-                  <p className="text-gray-300 text-lg">{item.description}</p>
+                  <p className="text-gray-300 text-lg">{item.desc}</p>
                 </div>
               </motion.div>
             ))}

@@ -41,10 +41,10 @@ export function ContactPage() {
             className="text-center max-w-3xl mx-auto"
           >
             <h1 className="text-4xl lg:text-6xl font-bold mb-6">
-              Get In Touch
+              Get Started with OT Global
             </h1>
             <p className="text-xl text-teal-100">
-              Ready to optimize your supply chain? Let's discuss how we can help your business grow.
+              Ready to scale your supply chain without scaling headcount?
             </p>
           </motion.div>
         </div>
@@ -97,6 +97,28 @@ export function ContactPage() {
                         </div>
                       </motion.div>
                     ))}
+                    <motion.div
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: 0.3 }}
+                      className="flex items-start gap-4"
+                    >
+                      <div className="bg-teal-100 w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Calendar className="text-[#00A896]" size={24} />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">Website</h4>
+                        <a
+                          href="https://www.otglobal.tech"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-gray-600 hover:text-[#00A896] transition-colors"
+                        >
+                          www.otglobal.tech
+                        </a>
+                      </div>
+                    </motion.div>
                   </div>
                 </CardContent>
               </Card>
@@ -108,13 +130,13 @@ export function ContactPage() {
                     <h3 className="text-xl font-bold">Book a Meeting</h3>
                   </div>
                   <p className="text-teal-100 mb-4">
-                    Schedule a consultation to discuss your supply chain needs with our expert team.
+                    Let’s discuss how a dedicated supply chain VA can support your business.
                   </p>
                   <Button
                     variant="outline"
                     className="w-full border-2 border-white text-[#00A896] hover:bg-white hover:text-[#00A896]"
                   >
-                    Schedule Now
+                    Talk to Our Team
                   </Button>
                 </CardContent>
               </Card>
