@@ -169,6 +169,100 @@ export function ServicesPage() {
         </div>
       </section>
 
+      {/* Supply Chain Virtual Assistant Model */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl lg:text-5xl font-bold mb-4 text-gray-900">
+              Supply Chain Virtual Assistants
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Not generic VAs. Dedicated supply chain specialists embedded into your operations.
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          >
+            {/* What our VAs are */}
+            <motion.div variants={itemVariants}>
+              <Card className="h-full border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300">
+                <CardHeader>
+                  <CardTitle className="text-xl font-bold mb-2">
+                    What Makes Our VAs Different
+                  </CardTitle>
+                  <CardDescription className="text-gray-700">
+                    OT Global provides dedicated supply chain Virtual Assistants trained specifically for
+                    retail and Amazon FBA operations.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    <li>• Work directly with your internal team</li>
+                    <li>• Follow your SOPs and workflows</li>
+                    <li>• Accountable to clearly defined KPIs</li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Why VAs are in demand */}
+            <motion.div variants={itemVariants}>
+              <Card className="h-full border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300">
+                <CardHeader>
+                  <CardTitle className="text-xl font-bold mb-2">
+                    Why Virtual Assistants Are in High Demand
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2 text-sm text-gray-700 mb-4">
+                    <li>• Rising in-house hiring costs</li>
+                    <li>• Talent shortages in operations roles</li>
+                    <li>• Need for flexibility and speed</li>
+                  </ul>
+                  <p className="text-sm text-gray-700">
+                    Virtual Assistants allow brands to scale execution without adding fixed headcount.
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* VA Benefits */}
+            <motion.div variants={itemVariants}>
+              <Card className="h-full border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300">
+                <CardHeader>
+                  <CardTitle className="text-xl font-bold mb-2">
+                    VA Benefits
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2 text-sm text-gray-700 mb-4">
+                    <li>• Under USD 20/hour</li>
+                    <li>• No hiring or HR overhead</li>
+                    <li>• Immediate deployment</li>
+                    <li>• Flexible scaling up or down</li>
+                    <li>• Consistent SOP-based execution</li>
+                  </ul>
+                  <p className="text-sm text-gray-700 font-medium">
+                    Clients typically save <span className="text-[#00A896]">40–60%+</span> on operational headcount costs.
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Image Showcase Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">

@@ -125,8 +125,10 @@ export function PlansPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-gray-900">Flexible Engagement Models</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">Choose the level of support that fits your business needs</p>
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-gray-900">Service Plans</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Choose the plan that matches the complexity and scale of your supply chain.
+            </p>
           </motion.div>
 
           <motion.div
@@ -138,26 +140,49 @@ export function PlansPage() {
           >
             {[
               {
-                name: "Part-Time",
-                hours: "20 hours/week",
-                idealFor: "Emerging brands with growing needs",
-                features: ["Dedicated VA Support", "Email & Slack Communication", "Weekly Reporting", "Standard SOP Execution"],
-                popular: false
+                name: "Basic",
+                label: "Essential Supply Chain Management",
+                idealFor: "Brands needing a solid operational foundation",
+                features: [
+                  "RFQ Data Validation",
+                  "PO Placement",
+                  "PO Management",
+                  "Inbound logistics",
+                  "Standard KPI Reporting",
+                  "Data Powered by Anvyl",
+                  "Supply Chain Dashboard",
+                  "Dedicated Team & Contact",
+                  "Supplier Scorecard",
+                ],
+                popular: false,
               },
               {
-                name: "Full-Time",
-                hours: "40 hours/week",
-                idealFor: "Scaling brands needing daily execution",
-                features: ["Dedicated Full-Time VA", "Real-time Communication", "Daily & Weekly Reporting", "Proactive Process Improvement", "Priority Support"],
-                popular: true
+                name: "Plus",
+                label: "Advanced Optimization & Tools",
+                idealFor: "Growing brands ready to optimize planning and data",
+                features: [
+                  "All Sourcing Basic Services +",
+                  "Demand Planning / Supply Planning",
+                  "SKU Data Hygiene Management",
+                  "HTS Code Auditing",
+                  "Freight Forwarding Invoice Auditing",
+                ],
+                popular: true,
               },
               {
-                name: "Multi-VA Team",
-                hours: "Custom",
-                idealFor: "Enterprise & Aggregators",
-                features: ["Team Lead + VAs", "Comprehensive Supply Chain Management", "Custom KPI Dashboards", "Strategic Planning Support", "24/7 Coverage Options"],
-                popular: false
-              }
+                name: "Pro",
+                label: "Comprehensive Supply Chain Management",
+                idealFor: "High-growth brands with complex global operations",
+                features: [
+                  "All Sourcing Plus Services +",
+                  "Regulatory Compliance",
+                  "Sourcing / Counter Sourcing",
+                  "AGL Inbound Logistics Management",
+                  "NetSuite / ERP Management",
+                  "Weekly Supply Chain Time",
+                ],
+                popular: false,
+              },
             ].map((plan, index) => (
               <motion.div
                 key={index}
@@ -174,7 +199,9 @@ export function PlansPage() {
                   )}
                   <CardHeader className="text-center pb-8">
                     <CardTitle className="text-2xl font-bold mb-2">{plan.name}</CardTitle>
-                    <div className="text-[#00A896] font-bold text-xl mb-2">{plan.hours}</div>
+                    <div className="text-[#00A896] font-bold text-lg mb-2">
+                      {plan.label}
+                    </div>
                     <CardDescription>{plan.idealFor}</CardDescription>
                   </CardHeader>
                   <CardContent className="flex-grow flex flex-col">
