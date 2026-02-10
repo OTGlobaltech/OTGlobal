@@ -4,6 +4,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 import { Menu, X, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,10 +15,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import Image from "next/image";
+import { BookMeetingForm } from "@/components/forms/BookMeetingForm";
 
 export function Header() {
   const pathname = usePathname();
@@ -56,13 +54,6 @@ export function Header() {
     { name: "Privacy", path: "/privacy" },
   ];
 
-  const handleMeetingSubmit = (e) => {
-    e.preventDefault();
-    // Handle meeting booking logic here
-    alert("Meeting request submitted! We'll contact you soon.");
-    setMeetingDialogOpen(false);
-  };
-
   const isActive = (path) => {
     if (path === "/") {
       return pathname === "/";
@@ -92,8 +83,8 @@ export function Header() {
             <Link
               href="/"
               className={`text-sm transition-colors ${isActive("/")
-                  ? "text-[#00A896]"
-                  : "text-gray-600 hover:text-gray-900"
+                ? "text-[#00A896]"
+                : "text-gray-600 hover:text-gray-900"
                 }`}
             >
               Home
@@ -131,8 +122,8 @@ export function Header() {
                   key={item.path}
                   href={item.path}
                   className={`text-sm transition-colors ${isActive(item.path)
-                      ? "text-[#00A896]"
-                      : "text-gray-600 hover:text-gray-900"
+                    ? "text-[#00A896]"
+                    : "text-gray-600 hover:text-gray-900"
                     }`}
                 >
                   {item.name}
@@ -156,36 +147,7 @@ export function Header() {
                     Schedule a consultation to discuss your China sourcing needs. We'll get back to you within 24 hours.
                   </DialogDescription>
                 </DialogHeader>
-                <form onSubmit={handleMeetingSubmit} className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="name">Full Name</Label>
-                    <Input id="name" placeholder="John Doe" required />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Email</Label>
-                    <Input id="email" type="email" placeholder="john@company.com" required />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="company">Company Name</Label>
-                    <Input id="company" placeholder="Your Company Ltd." required />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="phone">Phone Number</Label>
-                    <Input id="phone" type="tel" placeholder="+1 (555) 000-0000" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="message">What would you like to discuss?</Label>
-                    <Textarea
-                      id="message"
-                      placeholder="Tell us about your sourcing needs, product requirements, or any questions you have..."
-                      rows={4}
-                      required
-                    />
-                  </div>
-                  <Button type="submit" className="w-full bg-[#00A896] hover:bg-[#008c7a]">
-                    Submit Request
-                  </Button>
-                </form>
+                <BookMeetingForm onSuccess={() => setMeetingDialogOpen(false)} />
               </DialogContent>
             </Dialog>
             <Link href="/contact">
@@ -219,8 +181,8 @@ export function Header() {
                 setMobileSolutionsOpen(false);
               }}
               className={`block w-full text-left px-4 py-2 text-sm ${isActive("/")
-                  ? "text-[#00A896] bg-teal-50"
-                  : "text-gray-600 hover:bg-gray-50"
+                ? "text-[#00A896] bg-teal-50"
+                : "text-gray-600 hover:bg-gray-50"
                 }`}
             >
               Home
@@ -264,8 +226,8 @@ export function Header() {
                   href={item.path}
                   onClick={() => setMobileMenuOpen(false)}
                   className={`block w-full text-left px-4 py-2 text-sm ${isActive(item.path)
-                      ? "text-[#00A896] bg-teal-50"
-                      : "text-gray-600 hover:bg-gray-50"
+                    ? "text-[#00A896] bg-teal-50"
+                    : "text-gray-600 hover:bg-gray-50"
                     }`}
                 >
                   {item.name}
