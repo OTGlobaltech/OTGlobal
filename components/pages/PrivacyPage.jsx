@@ -191,7 +191,7 @@ export function PrivacyPage() {
               </p>
               <ul className="space-y-2">
                 <li>Email: info@otglobal.tech</li>
-                <li>Phone: +1 (555) 123-4567</li>
+                <li>Phone: (+92) 333 50071​15</li>
                 <li>Address: United States</li>
               </ul>
             </motion.div>
