@@ -24,33 +24,26 @@ export function Footer() {
             </div>
             <p className="text-sm text-gray-400 mb-4">
               Your trusted partner for China sourcing and manufacturing. We connect
-              businesses worldwide with premium Chinese suppliers, ensuring quality, 
+              businesses worldwide with premium Chinese suppliers, ensuring quality,
               cost-efficiency, and peace of mind.
             </p>
             <div className="flex space-x-4">
               <a
-                href="#"
+                href="https://www.facebook.com/profile.php?id=61579732108794"
                 className="text-gray-400 hover:text-[#00A896] transition-colors"
                 aria-label="Facebook"
               >
                 <Facebook size={20} />
               </a>
               <a
-                href="#"
-                className="text-gray-400 hover:text-[#00A896] transition-colors"
-                aria-label="Twitter"
-              >
-                <Twitter size={20} />
-              </a>
-              <a
-                href="#"
+                href="https://www.linkedin.com/company/otglobalgroup/?viewAsMember=true"
                 className="text-gray-400 hover:text-[#00A896] transition-colors"
                 aria-label="LinkedIn"
               >
                 <Linkedin size={20} />
               </a>
               <a
-                href="#"
+                href="mailto:info@otglobal.tech"
                 className="text-gray-400 hover:text-[#00A896] transition-colors"
                 aria-label="Email"
               >

@@ -49,7 +49,7 @@ export default function OrderManagementPanomPage() {
               Solutions
             </p>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-              Order Management – Panom
+              Order Management
             </h1>
             <p className="text-lg sm:text-xl text-teal-100">
               A centralized, data-driven order management layer that gives you real-time visibility
@@ -84,7 +84,7 @@ export default function OrderManagementPanomPage() {
                 Built for Modern, Omnichannel Supply Chains
               </h2>
               <p className="text-gray-700 mb-4 leading-relaxed">
-                OT Global&apos;s Panom order management approach is designed for fast-growing brands,
+                OT Global&apos;s order management approach is designed for fast-growing brands,
                 Amazon and ecommerce sellers, and distributors who need reliable execution at scale.
                 We connect your sourcing, production, and logistics data to ensure every PO is
                 aligned with demand and cash-flow priorities.

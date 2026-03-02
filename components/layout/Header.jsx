@@ -25,8 +25,8 @@ export function Header() {
 
   const solutionItems = [
     {
-      name: "Order Management – Panom",
-      path: "/solutions/order-management-panom",
+      name: "Order Management",
+      path: "/solutions/order-management",
     },
     {
       name: "Distribution & Fulfillment",
@@ -47,11 +47,8 @@ export function Header() {
     { name: "About", path: "/about" },
     { name: "Services", path: "/services" },
     { name: "Plans", path: "/plans" },
-    { name: "News", path: "/news" },
     { name: "FAQs", path: "/faqs" },
-    { name: "Careers", path: "/careers" },
     { name: "Contact", path: "/contact" },
-    { name: "Privacy", path: "/privacy" },
   ];
 
   const isActive = (path) => {

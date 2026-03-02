@@ -45,7 +45,7 @@ export function HomePage() {
     },
     {
       url: "https://images.unsplash.com/photo-1758873263563-5ba4aa330799?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxxdWFsaXR5JTIwY29udHJvbCUyMGluc3BlY3Rpb258ZW58MXx8fHwxNzYxNTU5NTUzfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      title: "Quality Control",
+      title: "Quality Control and Compliance",
     },
     {
       url: "https://images.unsplash.com/photo-1739204618173-3e89def7140f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGluYSUyMHdhcmVob3VzZSUyMGxvZ2lzdGljc3xlbnwxfHx8fDE3NjE2NDQ0MzB8MA&ixlib=rb-4.1.0&q=80&w=1080",
@@ -54,10 +54,6 @@ export function HomePage() {
     {
       url: "https://images.unsplash.com/photo-1585313736086-9a10c24f30dc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9kdWN0JTIwc291cmNpbmclMjBtYXRlcmlhbHN8ZW58MXx8fHwxNzYxNjQ0NDMwfDA&ixlib=rb-4.1.0&q=80&w=1080",
       title: "Product Sourcing",
-    },
-    {
-      url: "https://images.unsplash.com/photo-1729843420196-1ff32bb39db5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYW51ZmFjdHVyaW5nJTIwYXNzZW1ibHklMjBsaW5lfGVufDF8fHx8MTc2MTY0NDQzMXww&ixlib=rb-4.1.0&q=80&w=1080",
-      title: "Assembly Lines",
     },
     {
       url: "https://images.unsplash.com/photo-1594571603435-0b192ab6dafa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzaGlwcGluZyUyMGV4cG9ydCUyMGNvbnRhaW5lcnxlbnwxfHx8fDE3NjE2NDQ0MzF8MA&ixlib=rb-4.1.0&q=80&w=1080",
@@ -102,7 +98,7 @@ export function HomePage() {
     { value: "100+", label: "Brands Managed" },
     { value: "15,000+", label: "SKUs Managed" },
     { value: "$100M+", label: "Total Spend Managed" },
-    { value: "95%+", label: "Client Satisfaction" },
+    { value: "100%", label: "Client Satisfaction" },
   ];
 
   const whyChoose = [
@@ -360,7 +356,7 @@ export function HomePage() {
               },
               {
                 icon: Package,
-                title: "Operations Logicstics",
+                title: "Operations Logistics",
                 description: "Inventory management, procurement, vendor coordination, and logistics support."
               },
               {
@@ -494,7 +490,7 @@ export function HomePage() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl lg:text-5xl text-gray-600 mb-4 font-bold">
-              Comprehensive China Outsourcing Services
+              Comprehensive Outsourcing Services
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Everything you need to successfully source and manufacture products in China

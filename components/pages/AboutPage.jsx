@@ -10,7 +10,7 @@ export function AboutPage() {
     { value: "100+", label: "Brands Managed", icon: Award },
     { value: "15,000+", label: "SKUs Managed", icon: Target },
     { value: "$100M+", label: "Total Spend Managed", icon: TrendingUp },
-    { value: "95%+", label: "Client Satisfaction", icon: Users },
+    { value: "100%", label: "Client Satisfaction", icon: Users },
   ];
 
   const whyChooseUs = [
