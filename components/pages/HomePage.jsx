@@ -3,7 +3,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, Globe, Shield, TrendingUp, Users, Award, Clock, Package, Target, Zap } from "lucide-react";
+import { ArrowRight, CheckCircle2, Globe, Shield, TrendingUp, Users, Award, Clock, Package, Target, Zap, Database } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -39,10 +39,6 @@ export function HomePage() {
   }, []);
 
   const carouselImages = [
-    {
-      url: "https://images.unsplash.com/photo-1548273989-e90f53ea0501?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGluYSUyMGZhY3RvcnklMjBtYW51ZmFjdHVyaW5nfGVufDF8fHx8MTc2MTY0NDQzMHww&ixlib=rb-4.1.0&q=80&w=1080",
-      title: "Advanced Manufacturing",
-    },
     {
       url: "https://images.unsplash.com/photo-1758873263563-5ba4aa330799?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxxdWFsaXR5JTIwY29udHJvbCUyMGluc3BlY3Rpb258ZW58MXx8fHwxNzYxNTU5NTUzfDA&ixlib=rb-4.1.0&q=80&w=1080",
       title: "Quality Control and Compliance",
@@ -345,7 +341,7 @@ export function HomePage() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto"
           >
             {[
               {
@@ -362,6 +358,11 @@ export function HomePage() {
                 icon: Target,
                 title: "Systems & Reporting",
                 description: "Warehouse inbound/outbound operations, reporting, dashboards, and system updates."
+              },
+              {
+                icon: Database,
+                title: "Softwares",
+                description: "Oracle Netsuite, SAP, Odoo, Zoho, WMS (eWarehouse Management System), Shiphawk, Microsoft (Dynamic 365)"
               }
             ].map((point, index) => (
               <motion.div key={index} variants={itemVariants}>

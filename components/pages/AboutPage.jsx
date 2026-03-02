@@ -300,6 +300,11 @@ export function AboutPage() {
                 image: "/Usama-Mukhtar.jpeg",
               },
               {
+                name: "Zulqarnain Afzal",
+                role: "CCO",
+                image: null,
+              },
+              {
                 name: "Abdul Aziz",
                 role: "Supply chain associate",
                 image: "/AbdulAziz-ID.jpeg",
@@ -328,14 +333,20 @@ export function AboutPage() {
               <motion.div key={index} variants={itemVariants}>
                 <Card className="border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
                   <CardContent className="p-6 text-center">
-                    <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden">
-                      <ImageWithFallback
-                        src={member.image}
-                        alt={member.name}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
+                    {member.image ? (
+                      <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden">
+                        <ImageWithFallback
+                          src={member.image}
+                          alt={member.name}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    ) : (
+                      <div className="relative w-32 h-32 mx-auto mb-4 rounded-full bg-teal-50 flex items-center justify-center border-2 border-teal-100 text-[#00A896]">
+                        <span className="text-4xl font-bold">{member.name.charAt(0)}</span>
+                      </div>
+                    )}
                     <h3 className="text-xl font-semibold mb-1 text-gray-900">{member.name}</h3>
                     <p className="text-[#00A896] font-medium mb-2">{member.role}</p>
                   </CardContent>

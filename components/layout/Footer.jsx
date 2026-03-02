@@ -23,7 +23,7 @@ export function Footer() {
               />
             </div>
             <p className="text-sm text-gray-400 mb-4">
-              Your trusted partner for China sourcing and manufacturing. We connect
+              Your trusted partner for sourcing and manufacturing. We connect
               businesses worldwide with premium Chinese suppliers, ensuring quality,
               cost-efficiency, and peace of mind.
             </p>
@@ -32,6 +32,7 @@ export function Footer() {
                 href="https://www.facebook.com/profile.php?id=61579732108794"
                 className="text-gray-400 hover:text-[#00A896] transition-colors"
                 aria-label="Facebook"
+                target="_blank"
               >
                 <Facebook size={20} />
               </a>
@@ -39,6 +40,7 @@ export function Footer() {
                 href="https://www.linkedin.com/company/otglobalgroup/?viewAsMember=true"
                 className="text-gray-400 hover:text-[#00A896] transition-colors"
                 aria-label="LinkedIn"
+                target="_blank"
               >
                 <Linkedin size={20} />
               </a>
