@@ -19,7 +19,7 @@ export function Footer() {
                 alt="OT Global Group"
                 width={180}
                 height={90}
-                className="h-20 lg:h-24 w-auto brightness-0 invert"
+                className="h-20 lg:h-24 w-auto"
               />
             </div>
             <p className="text-sm text-gray-400 mb-4">

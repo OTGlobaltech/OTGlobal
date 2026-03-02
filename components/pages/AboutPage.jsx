@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Target, Zap, Users, TrendingUp, Award, CheckCircle2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { ImageWithFallback } from "@/components/common/ImageWithFallback";
 import Image from "next/image";
 
 export function AboutPage() {
@@ -244,20 +245,10 @@ export function AboutPage() {
             </h2>
             <Card className="border-gray-200 shadow-xl">
               <CardContent className="p-8 md:p-12">
-                <div className="flex flex-col md:flex-row gap-8">
-                  <div className="flex-shrink-0">
-                    <div className="relative w-48 h-48 rounded-full overflow-hidden mx-auto md:mx-0">
-                      <Image
-                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop"
-                        alt="John Doe"
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                  </div>
+                <div className="flex flex-col gap-8">
                   <div className="flex-1">
-                    <h3 className="text-2xl font-bold mb-2 text-gray-900">Bilal Asghar</h3>
-                    <p className="text-[#00A896] font-semibold mb-6">CEO, OT Global Group</p>
+                    <h3 className="text-2xl font-bold mb-2 text-gray-900 text-center md:text-left">Bilal Asghar</h3>
+                    <p className="text-[#00A896] font-semibold mb-6 text-center md:text-left">CEO, OT Global Group</p>
                     <div className="prose prose-lg max-w-none">
                       <p className="text-gray-700 leading-relaxed mb-4">
                         OT Global Group is platform for young entrepreneurs to grow and shine in the field of supply chain. We strongly believe that real business success is not just about profits measured in numbers, but it is also how these numbers are achieved and how we can improve the customers supply chain operations.
@@ -273,6 +264,84 @@ export function AboutPage() {
                 </div>
               </CardContent>
             </Card>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl lg:text-5xl mb-4 font-bold text-gray-900">
+              Meet Our Team
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Experienced professionals dedicated to your supply chain success
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
+          >
+            {[
+              {
+                name: "Usama Mukhtar",
+                role: "COO",
+                image: "/Usama-Mukhtar.jpeg",
+              },
+              {
+                name: "Abdul Aziz",
+                role: "Supply chain associate",
+                image: "/AbdulAziz-ID.jpeg",
+              },
+              {
+                name: "Hafiz Muhammad Ali",
+                role: "Supply chain assistant",
+                image: "/Hafiz-Muhammad-Ali.jpeg",
+              },
+              {
+                name: "Zeeshan Ameer",
+                role: "Operation assistant",
+                image: "/Zeeshan-Ameer.jpeg",
+              },
+              {
+                name: "Zulnurain Afzal",
+                role: "Supply chain assistant",
+                image: "/Zulnurain-afzal.jpeg",
+              },
+              {
+                name: "Qazi Usama",
+                role: "Social media coordinator",
+                image: "/Qazi-Usama.jpeg",
+              },
+            ].map((member, index) => (
+              <motion.div key={index} variants={itemVariants}>
+                <Card className="border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                  <CardContent className="p-6 text-center">
+                    <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden">
+                      <ImageWithFallback
+                        src={member.image}
+                        alt={member.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-1 text-gray-900">{member.name}</h3>
+                    <p className="text-[#00A896] font-medium mb-2">{member.role}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </section>
