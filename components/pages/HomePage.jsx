@@ -252,8 +252,8 @@ export function HomePage() {
           {/* Fallback gradient background if video doesn't load - Behind video */}
           <div className="absolute inset-0 bg-gradient-to-br from-[#00A896] to-[#008c7a]" style={{ zIndex: 0 }}></div>
 
-          {/* Very subtle dark overlay only for text readability - minimal opacity */}
-          <div className="absolute inset-0 bg-black/20" style={{ zIndex: 2 }}></div>
+          {/* Dark overlay for text readability over bright video */}
+          <div className="absolute inset-0 bg-black/50" style={{ zIndex: 2 }}></div>
         </div>
 
         {/* Content - Above video with higher z-index */}
@@ -264,15 +264,14 @@ export function HomePage() {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl mb-6 font-bold leading-tight">
-              <span className="block mb-2 text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">Supply Chain</span>
-              <span className="block bg-gradient-to-r from-white via-teal-50 to-white bg-clip-text text-transparent drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
-                Built for Scale
-              </span>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl mb-6 font-bold leading-tight text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
+              Scale Your Supply Chain Without Scaling Headcount
             </h1>
+            <p className="text-lg sm:text-xl lg:text-2xl text-white/95 mb-6 max-w-3xl mx-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)] font-medium leading-relaxed">
+              OT Global provides trained Virtual Assistants (VAs) who manage day-to-day supply chain execution across planning, procurement, logistics, and inventory operations.
+            </p>
             <p className="text-lg sm:text-xl lg:text-2xl text-white/95 mb-10 max-w-3xl mx-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)] font-medium leading-relaxed">
-              End-to-end supply chain Virtual Assistants for retail and Amazon FBA brands.
-              We help fast-growing companies reduce headcount costs, improve execution, and scale operations with experienced supply chain professionals—at under USD 20/hour.
+              Our VAs work as an extension of your internal team—allowing you to stay lean, agile, and cost-efficient. Built for retail brands, Amazon FBA sellers, and aggregators operating at scale at under USD 5-20/hour
             </p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -381,48 +380,7 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* Scale Your Supply Chain Section (New) */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-gray-900">
-                Scale Your Supply Chain Without Scaling Headcount
-              </h2>
-              <div className="prose prose-lg text-gray-600">
-                <p className="mb-4">
-                  OT Global provides trained Virtual Assistants (VAs) who manage day-to-day supply chain execution across planning, procurement, logistics, and inventory operations.
-                </p>
-                <p>
-                  Our VAs work as an extension of your internal team—allowing you to stay lean, agile, and cost-efficient. Built for retail brands, Amazon FBA sellers, and aggregators operating at scale.
-                </p>
-              </div>
-              <Link href="/contact" className="inline-block mt-8">
-                <Button className="bg-[#00A896] hover:bg-[#008c7a] text-white">Let's Talk</Button>
-              </Link>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="relative h-[400px] rounded-2xl overflow-hidden shadow-xl"
-            >
-              <Image
-                src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1632&q=80"
-                alt="Supply Chain Team"
-                fill
-                className="object-cover"
-              />
-            </motion.div>
-          </div>
-        </div>
-      </section>
+
 
       {/* Carousel Section */}
       <section className="py-20 bg-white">
