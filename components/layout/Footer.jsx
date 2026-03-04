@@ -13,15 +13,6 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center mb-4">
-              <Image
-                src="/logo.png"
-                alt="OT Global Group"
-                width={180}
-                height={90}
-                className="h-20 lg:h-24 w-auto"
-              />
-            </div>
             <p className="text-sm text-gray-400 mb-4">
               Your trusted partner for sourcing and manufacturing. We connect
               businesses worldwide with premium Chinese suppliers, ensuring quality,

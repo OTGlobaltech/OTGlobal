@@ -329,6 +329,16 @@ export function AboutPage() {
                 role: "Social media coordinator",
                 image: "/Qazi-Usama.jpeg",
               },
+              {
+                name: "Sarah Malik",
+                role: "Client Success Manager",
+                image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop",
+              },
+              {
+                name: "Emily Chen",
+                role: "Supply Chain Analyst",
+                image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop",
+              },
             ].map((member, index) => (
               <motion.div key={index} variants={itemVariants}>
                 <Card className="border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">

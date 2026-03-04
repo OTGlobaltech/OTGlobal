@@ -249,7 +249,7 @@ export function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-br from-[#00A896] to-[#008c7a]" style={{ zIndex: 0 }}></div>
 
           {/* Dark overlay for text readability over bright video */}
-          <div className="absolute inset-0 bg-black/70" style={{ zIndex: 2 }}></div>
+          <div className="absolute inset-0 bg-black/65" style={{ zIndex: 2 }}></div>
         </div>
 
         {/* Content - Above video with higher z-index */}
@@ -361,7 +361,7 @@ export function HomePage() {
               },
               {
                 icon: Database,
-                title: "Softwares",
+                title: "Technology Stack",
                 description: "Oracle Netsuite, SAP, Odoo, Zoho, WMS (eWarehouse Management System), Shiphawk, Microsoft (Dynamic 365)"
               }
             ].map((point, index) => (
