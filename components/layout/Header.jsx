@@ -140,7 +140,7 @@ export function Header() {
                 <DialogHeader>
                   <DialogTitle>Book a Meeting with Our Expert</DialogTitle>
                   <DialogDescription>
-                    Schedule a consultation to discuss your China sourcing needs. We'll get back to you within 24 hours.
+                    Schedule a consultation to discuss your sourcing needs. We'll get back to you within 24 hours.
                   </DialogDescription>
                 </DialogHeader>
                 <BookMeetingForm onSuccess={() => setMeetingDialogOpen(false)} />

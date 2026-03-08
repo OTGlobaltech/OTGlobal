@@ -38,9 +38,9 @@ export function NewsPage() {
       icon: Package,
     },
     {
-      title: "The Future of China Sourcing in 2024",
+      title: "The Future of Sourcing in 2024",
       excerpt:
-        "Exploring how China sourcing is evolving and what businesses need to know to stay competitive in the global market.",
+        "Exploring how sourcing is evolving and what businesses need to know to stay competitive in the global market.",
       date: "December 28, 2023",
       category: "Sourcing",
       image: "https://images.unsplash.com/photo-1548273989-e90f53ea0501?w=800&h=600&fit=crop",

@@ -61,7 +61,7 @@ export function HomePage() {
     {
       icon: Globe,
       title: "Sourcing",
-      description: "Access to verified manufacturers and suppliers across China with competitive pricing",
+      description: "Access to verified manufacturers and suppliers across the world with competitive pricing",
     },
     {
       icon: Shield,
@@ -71,12 +71,12 @@ export function HomePage() {
     {
       icon: TrendingUp,
       title: "Cost Optimization",
-      description: "Reduce procurement costs by up to 40% through our China network",
+      description: "Reduce procurement costs by up to 40% through our network",
     },
     {
       icon: Users,
       title: "Dedicated Support",
-      description: "On-ground team in China managing your orders from start to finish",
+      description: "On-ground team managing your orders from start to finish",
     },
     {
       icon: Award,
@@ -100,7 +100,7 @@ export function HomePage() {
   const whyChoose = [
     {
       title: "Local Expertise",
-      description: "Our team in China understands local business culture, regulations, and negotiation practices",
+      description: "Our team understands local business culture, regulations, and negotiation practices",
     },
     {
       title: "End-to-End Service",
@@ -120,7 +120,7 @@ export function HomePage() {
     {
       icon: Target,
       title: "Strategic Sourcing",
-      description: "We connect you with the right manufacturers in China based on your specific product requirements, quality standards, and budget constraints.",
+      description: "We connect you with the right manufacturers based on your specific product requirements, quality standards, and budget constraints.",
     },
     {
       icon: Package,
@@ -397,7 +397,7 @@ export function HomePage() {
               Our Capabilities
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From sourcing to delivery, we manage every aspect of your China outsourcing needs
+              From sourcing to delivery, we manage every aspect of your outsourcing needs
             </p>
           </motion.div>
           <div className="max-w-7xl mx-auto relative">
@@ -452,7 +452,7 @@ export function HomePage() {
               Comprehensive Outsourcing Services
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Everything you need to successfully source and manufacture products in China
+              Everything you need to successfully source and manufacture products
             </p>
           </motion.div>
 
