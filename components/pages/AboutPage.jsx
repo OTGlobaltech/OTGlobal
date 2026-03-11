@@ -298,6 +298,7 @@ export function AboutPage() {
                 name: "Usama Mukhtar",
                 role: "COO",
                 image: "/Usama-Mukhtar.jpeg",
+                imageClassName: "object-contain bg-white p-1",
               },
               {
                 name: "Zulqarnain Afzal",
@@ -349,7 +350,7 @@ export function AboutPage() {
                           src={member.image}
                           alt={member.name}
                           fill
-                          className="object-cover"
+                          className={member.imageClassName || "object-cover"}
                         />
                       </div>
                     ) : (
