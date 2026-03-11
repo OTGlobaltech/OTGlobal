@@ -306,33 +306,33 @@ export function AboutPage() {
               },
               {
                 name: "Abdul Aziz",
-                role: "Supply chain associate",
+                role: "Supply Chain Associate",
                 image: "/AbdulAziz-ID.jpeg",
               },
               {
                 name: "Hafiz Muhammad Ali",
-                role: "Supply chain assistant",
+                role: "Supply Chain Assistant",
                 image: "/Hafiz-Muhammad-Ali.jpeg",
               },
               {
                 name: "Zeeshan Ameer",
-                role: "Operation assistant",
+                role: "Operation Assistant",
                 image: "/Zeeshan-Ameer.jpeg",
               },
               {
                 name: "Zulnurain Afzal",
-                role: "Supply chain assistant",
+                role: "Supply Chain Assistant",
                 image: "/Zulnurain-afzal.jpeg",
               },
               {
                 name: "Qazi Usama",
-                role: "Social media coordinator",
+                role: "Admin & IT Operations Associate",
                 image: "/Qazi-Usama.jpeg",
               },
               {
                 name: "Sarah Malik",
                 role: "Client Success Manager",
-                image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop",
+                // image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop",
               },
               {
                 name: "Emily Chen",
