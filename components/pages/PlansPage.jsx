@@ -1,14 +1,89 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Check } from "lucide-react";
+import { Check, Loader2 } from "lucide-react";
+import { firestoreService } from "@/lib/firestoreService";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import Link from "next/link";
 
 export function PlansPage() {
 
+  const fallbackPlans = [
+    {
+      planName: "Basic",
+      label: "Essential Supply Chain Management",
+      idealFor: "Brands needing a solid operational foundation",
+      features: [
+        "RFQ Data Validation",
+        "PO Placement",
+        "PO Management",
+        "Inbound logistics",
+        "Standard KPI Reporting",
+        "Data Powered by Anvyl",
+        "Supply Chain Dashboard",
+        "Dedicated Team & Contact",
+        "Supplier Scorecard",
+      ],
+      isPopular: false,
+    },
+    {
+      planName: "Plus",
+      label: "Advanced Optimization & Tools",
+      idealFor: "Growing brands ready to optimize planning and data",
+      features: [
+        "All Sourcing Basic Services +",
+        "Demand Planning / Supply Planning",
+        "SKU Data Hygiene Management",
+        "HTS Code Auditing",
+        "Freight Forwarding Invoice Auditing",
+      ],
+      isPopular: true,
+    },
+    {
+      planName: "Pro",
+      label: "Comprehensive Supply Chain Management",
+      idealFor: "High-growth brands with complex global operations",
+      features: [
+        "All Sourcing Plus Services +",
+        "Regulatory Compliance",
+        "Sourcing / Counter Sourcing",
+        "AGL Inbound Logistics Management",
+        "NetSuite / ERP Management",
+        "Weekly Supply Chain Time",
+      ],
+      isPopular: false,
+    },
+  ];
 
+  const [plans, setPlans] = useState(fallbackPlans);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPlans = async () => {
+      try {
+        const fetchedPlans = await firestoreService.getAll('pricing');
+        if (fetchedPlans && fetchedPlans.length > 0) {
+          // Format features if it comes back as a string from admin panel
+          const formattedPlans = fetchedPlans.map(plan => ({
+            ...plan,
+            label: plan.description || plan.label || '',
+            idealFor: plan.description || plan.idealFor || '',
+            features: typeof plan.features === 'string' 
+              ? plan.features.split('\n').filter(f => f.trim() !== '') 
+              : plan.features
+          }));
+          setPlans(formattedPlans);
+        }
+      } catch (error) {
+        console.error("Failed to load plans from database, using fallback.", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPlans();
+  }, []);
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -131,98 +206,61 @@ export function PlansPage() {
             </p>
           </motion.div>
 
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto"
-          >
-            {[
-              {
-                name: "Basic",
-                label: "Essential Supply Chain Management",
-                idealFor: "Brands needing a solid operational foundation",
-                features: [
-                  "RFQ Data Validation",
-                  "PO Placement",
-                  "PO Management",
-                  "Inbound logistics",
-                  "Standard KPI Reporting",
-                  "Data Powered by Anvyl",
-                  "Supply Chain Dashboard",
-                  "Dedicated Team & Contact",
-                  "Supplier Scorecard",
-                ],
-                popular: false,
-              },
-              {
-                name: "Plus",
-                label: "Advanced Optimization & Tools",
-                idealFor: "Growing brands ready to optimize planning and data",
-                features: [
-                  "All Sourcing Basic Services +",
-                  "Demand Planning / Supply Planning",
-                  "SKU Data Hygiene Management",
-                  "HTS Code Auditing",
-                  "Freight Forwarding Invoice Auditing",
-                ],
-                popular: true,
-              },
-              {
-                name: "Pro",
-                label: "Comprehensive Supply Chain Management",
-                idealFor: "High-growth brands with complex global operations",
-                features: [
-                  "All Sourcing Plus Services +",
-                  "Regulatory Compliance",
-                  "Sourcing / Counter Sourcing",
-                  "AGL Inbound Logistics Management",
-                  "NetSuite / ERP Management",
-                  "Weekly Supply Chain Time",
-                ],
-                popular: false,
-              },
-            ].map((plan, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                className="flex"
-              >
-                <Card className={`flex flex-col w-full hover:shadow-xl transition-shadow duration-300 ${plan.popular ? 'border-2 border-[#00A896] relative' : 'border-gray-200'}`}>
-                  {plan.popular && (
-                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <span className="bg-[#00A896] text-white px-4 py-1 rounded-full text-sm font-semibold">
-                        Most Popular
-                      </span>
-                    </div>
-                  )}
-                  <CardHeader className="text-center pb-8">
-                    <CardTitle className="text-2xl font-bold mb-2">{plan.name}</CardTitle>
-                    <div className="text-[#00A896] font-bold text-lg mb-2">
-                      {plan.label}
-                    </div>
-                    <CardDescription>{plan.idealFor}</CardDescription>
-                  </CardHeader>
-                  <CardContent className="flex-grow flex flex-col">
-                    <ul className="space-y-4 mb-8 flex-grow">
-                      {plan.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-start gap-3">
-                          <Check className="text-[#00A896] mt-1 flex-shrink-0" size={18} />
-                          <span className="text-gray-600 text-sm">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <Link href="/contact" className="mt-auto">
-                      <Button className={`w-full ${plan.popular ? 'bg-[#00A896] hover:bg-[#008c7a]' : 'bg-gray-800 hover:bg-gray-900'} text-white`}>
-                        Get Started
-                      </Button>
-                    </Link>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
+          {loading ? (
+            <div className="flex flex-col items-center justify-center py-20 space-y-4">
+              <Loader2 className="w-10 h-10 animate-spin text-[#00A896]" />
+              <p className="text-gray-500 animate-pulse">Loading Pricing Plans...</p>
+            </div>
+          ) : (
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto"
+            >
+              {plans.map((plan, index) => (
+                <motion.div
+                  key={index}
+                  variants={itemVariants}
+                  className="flex"
+                >
+                  <Card className={`flex flex-col w-full hover:shadow-xl transition-shadow duration-300 ${plan.isPopular ? 'border-2 border-[#00A896] relative' : 'border-gray-200'}`}>
+                    {plan.isPopular && (
+                      <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <span className="bg-[#00A896] text-white px-4 py-1 rounded-full text-sm font-semibold">
+                          Most Popular
+                        </span>
+                      </div>
+                    )}
+                    <CardHeader className="text-center pb-8">
+                      <CardTitle className="text-2xl font-bold mb-2">{plan.planName}</CardTitle>
+                      <div className="text-[#00A896] font-bold text-lg mb-2">
+                        {plan.price && <div className="text-3xl mb-1">{plan.price}</div>}
+                        {plan.label}
+                      </div>
+                      <CardDescription>{plan.idealFor}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex-grow flex flex-col">
+                      <ul className="space-y-4 mb-8 flex-grow">
+                        {plan.features?.map((feature, idx) => (
+                          <li key={idx} className="flex items-start gap-3">
+                            <Check className="text-[#00A896] mt-1 flex-shrink-0" size={18} />
+                            <span className="text-gray-600 text-sm">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <Link href={plan.buttonLink || "/contact"} className="mt-auto">
+                        <Button className={`w-full ${plan.isPopular ? 'bg-[#00A896] hover:bg-[#008c7a]' : 'bg-gray-800 hover:bg-gray-900'} text-white`}>
+                          {plan.buttonText || 'Get Started'}
+                        </Button>
+                      </Link>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
         </div>
       </section>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">

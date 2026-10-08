@@ -1,7 +1,9 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Target, Zap, Users, TrendingUp, Award, CheckCircle2 } from "lucide-react";
+import { Target, Zap, Users, TrendingUp, Award, CheckCircle2, Loader2 } from "lucide-react";
+import { firestoreService } from "@/lib/firestoreService";
 import { Card, CardContent } from "@/components/ui/card";
 import { ImageWithFallback } from "@/components/common/ImageWithFallback";
 import Image from "next/image";
@@ -62,6 +64,78 @@ export function AboutPage() {
       },
     },
   };
+
+  const fallbackTeam = [
+    {
+      name: "Usama Mukhtar",
+      role: "COO",
+      image: "/Usama-Mukhtar.jpeg",
+      imageClassName: "object-contain bg-white p-1",
+    },
+    {
+      name: "Zulqarnain Afzal",
+      role: "CCO",
+      image: null,
+    },
+    {
+      name: "Abdul Aziz",
+      role: "Supply Chain Associate",
+      image: "/AbdulAziz-ID.jpeg",
+    },
+    {
+      name: "Hafiz Muhammad Ali",
+      role: "Supply Chain Assistant",
+      image: "/Hafiz-Muhammad-Ali.jpeg",
+    },
+    {
+      name: "Zeeshan Ameer",
+      role: "Operation Assistant",
+      image: "/Zeeshan-Ameer.jpeg",
+    },
+    {
+      name: "Zulnurain Afzal",
+      role: "Supply Chain Assistant",
+      image: "/Zulnurain-afzal.jpeg",
+    },
+    {
+      name: "Qazi Usama",
+      role: "Admin & IT Operations Associate",
+      image: "/Qazi-Usama.jpeg",
+    },
+    {
+      name: "Sarah Malik",
+      role: "Client Success Manager",
+    },
+    {
+      name: "Emily Chen",
+      role: "Supply Chain Analyst",
+      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop",
+    },
+  ];
+
+  const [team, setTeam] = useState(fallbackTeam);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchTeam = async () => {
+      try {
+        const fetchedTeam = await firestoreService.getAll('team', 'order', 'asc');
+        if (fetchedTeam && fetchedTeam.length > 0) {
+          // Normalize the image field (Admin panel uses imageUrl)
+          const formattedTeam = fetchedTeam.map(member => ({
+            ...member,
+            image: member.imageUrl || member.image
+          }));
+          setTeam(formattedTeam);
+        }
+      } catch (error) {
+        console.error("Failed to load team from database, using fallback.", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchTeam();
+  }, []);
 
   return (
     <div className="bg-white">
@@ -286,61 +360,24 @@ export function AboutPage() {
             </p>
           </motion.div>
 
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
-          >
-            {[
-              {
-                name: "Usama Mukhtar",
-                role: "COO",
-                image: "/Usama-Mukhtar.jpeg",
-                imageClassName: "object-contain bg-white p-1",
-              },
-              {
-                name: "Zulqarnain Afzal",
-                role: "CCO",
-                image: null,
-              },
-              {
-                name: "Abdul Aziz",
-                role: "Supply Chain Associate",
-                image: "/AbdulAziz-ID.jpeg",
-              },
-              {
-                name: "Hafiz Muhammad Ali",
-                role: "Supply Chain Assistant",
-                image: "/Hafiz-Muhammad-Ali.jpeg",
-              },
-              {
-                name: "Zeeshan Ameer",
-                role: "Operation Assistant",
-                image: "/Zeeshan-Ameer.jpeg",
-              },
-              {
-                name: "Zulnurain Afzal",
-                role: "Supply Chain Assistant",
-                image: "/Zulnurain-afzal.jpeg",
-              },
-              {
-                name: "Qazi Usama",
-                role: "Admin & IT Operations Associate",
-                image: "/Qazi-Usama.jpeg",
-              },
-              {
-                name: "Sarah Malik",
-                role: "Client Success Manager",
-                // image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop",
-              },
-              {
-                name: "Emily Chen",
-                role: "Supply Chain Analyst",
-                image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop",
-              },
-            ].map((member, index) => (
+          {loading ? (
+            <div className="flex flex-col items-center justify-center py-20 space-y-4">
+              <Loader2 className="w-10 h-10 animate-spin text-[#00A896]" />
+              <p className="text-gray-500 animate-pulse">Loading Team Members...</p>
+            </div>
+          ) : team.length === 0 ? (
+            <div className="text-center py-10">
+              <p className="text-gray-500 text-lg">Team members will be displayed here soon!</p>
+            </div>
+          ) : (
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
+            >
+              {team.map((member, index) => (
               <motion.div key={index} variants={itemVariants}>
                 <Card className="border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
                   <CardContent className="p-6 text-center">
@@ -364,7 +401,8 @@ export function AboutPage() {
                 </Card>
               </motion.div>
             ))}
-          </motion.div>
+            </motion.div>
+          )}
         </div>
       </section>
 

@@ -1,7 +1,9 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { HelpCircle } from "lucide-react";
+import { HelpCircle, Loader2 } from "lucide-react";
+import { firestoreService } from "@/lib/firestoreService";
 import {
   Accordion,
   AccordionContent,
@@ -63,6 +65,30 @@ export function FAQsPage() {
     },
   ];
 
+  const [faqData, setFaqData] = useState(faqs); // Start with fallback
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchFAQs = async () => {
+      try {
+        const fetchedFaqs = await firestoreService.getAll('faqs', 'order', 'asc');
+        if (fetchedFaqs && fetchedFaqs.length > 0) {
+          // Only show active FAQs
+          const activeFaqs = fetchedFaqs.filter(f => f.isActive !== false);
+          if (activeFaqs.length > 0) {
+            setFaqData(activeFaqs);
+          }
+        }
+      } catch (error) {
+        console.error("Failed to load FAQs from database, using fallback.", error);
+        // Fallback remains `faqs`
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchFAQs();
+  }, []);
+
   return (
     <div className="bg-white">
       {/* Hero Section */}
@@ -91,29 +117,36 @@ export function FAQsPage() {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <Accordion type="single" collapsible className="w-full space-y-4">
-              {faqs.map((faq, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <AccordionItem
-                    value={`item-${index}`}
-                    className="bg-white border border-gray-200 rounded-lg px-6 shadow-sm"
+            {loading ? (
+              <div className="flex flex-col items-center justify-center py-20 space-y-4">
+                <Loader2 className="w-10 h-10 animate-spin text-[#00A896]" />
+                <p className="text-gray-500 animate-pulse">Loading FAQs...</p>
+              </div>
+            ) : (
+              <Accordion type="single" collapsible className="w-full space-y-4">
+                {faqData.map((faq, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
                   >
-                    <AccordionTrigger className="text-left font-semibold text-gray-900 hover:text-[#00A896]">
-                      {faq.question}
-                    </AccordionTrigger>
-                    <AccordionContent className="text-gray-700 leading-relaxed pt-2">
-                      {faq.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                </motion.div>
-              ))}
-            </Accordion>
+                    <AccordionItem
+                      value={`item-${index}`}
+                      className="bg-white border border-gray-200 rounded-lg px-6 shadow-sm"
+                    >
+                      <AccordionTrigger className="text-left font-semibold text-gray-900 hover:text-[#00A896]">
+                        {faq.question}
+                      </AccordionTrigger>
+                      <AccordionContent className="text-gray-700 leading-relaxed pt-2">
+                        {faq.answer}
+                      </AccordionContent>
+                    </AccordionItem>
+                  </motion.div>
+                ))}
+              </Accordion>
+            )}
           </div>
 
           {/* Still Have Questions CTA */}

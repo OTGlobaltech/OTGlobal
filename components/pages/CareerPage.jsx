@@ -1,7 +1,9 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Briefcase, MapPin, Clock, Users, TrendingUp, Heart, Zap, Award } from "lucide-react";
+import { Briefcase, MapPin, Clock, Users, TrendingUp, Heart, Zap, Award, Loader2 } from "lucide-react";
+import { firestoreService } from "@/lib/firestoreService";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -84,6 +86,26 @@ export function CareerPage() {
       description: "Analyze supply chain data and provide insights for optimization.",
     },
   ];
+
+  const [positions, setPositions] = useState(openPositions);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPositions = async () => {
+      try {
+        const fetchedPositions = await firestoreService.getAll('careers');
+        if (fetchedPositions && fetchedPositions.length > 0) {
+          const activePositions = fetchedPositions.filter(p => p.status !== 'closed');
+          setPositions(activePositions);
+        }
+      } catch (error) {
+        console.error("Failed to load careers from database, using fallback.", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPositions();
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -187,49 +209,60 @@ export function CareerPage() {
             </p>
           </motion.div>
 
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto"
-          >
-            {openPositions.map((position, index) => (
-              <motion.div key={index} variants={itemVariants}>
-                <Card className="h-full border-gray-200 hover:shadow-lg transition-all duration-300 hover:border-[#00A896]">
-                  <CardHeader>
-                    <div className="flex items-start justify-between mb-2">
-                      <CardTitle className="text-xl">{position.title}</CardTitle>
-                      <Briefcase className="text-[#00A896] flex-shrink-0" size={24} />
-                    </div>
-                    <div className="flex flex-wrap gap-3 text-sm text-gray-600">
-                      <span className="flex items-center gap-1">
-                        <MapPin size={16} />
-                        {position.location}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Clock size={16} />
-                        {position.type}
-                      </span>
-                    </div>
-                    <div className="mt-2">
-                      <span className="inline-block bg-teal-100 text-[#00A896] px-3 py-1 rounded-full text-sm font-medium">
-                        {position.department}
-                      </span>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600 mb-4">{position.description}</p>
-                    <Link href="/contact">
-                      <Button className="w-full bg-[#00A896] hover:bg-[#008c7a] text-white">
-                        Apply Now
-                      </Button>
-                    </Link>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
+          {loading ? (
+            <div className="flex flex-col items-center justify-center py-20 space-y-4">
+              <Loader2 className="w-10 h-10 animate-spin text-[#00A896]" />
+              <p className="text-gray-500 animate-pulse">Loading Open Positions...</p>
+            </div>
+          ) : positions.length === 0 ? (
+            <div className="text-center py-10">
+              <p className="text-gray-500 text-lg">There are currently no open positions. Please check back later!</p>
+            </div>
+          ) : (
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto"
+            >
+              {positions.map((position, index) => (
+                <motion.div key={index} variants={itemVariants}>
+                  <Card className="h-full border-gray-200 hover:shadow-lg transition-all duration-300 hover:border-[#00A896]">
+                    <CardHeader>
+                      <div className="flex items-start justify-between mb-2">
+                        <CardTitle className="text-xl">{position.title}</CardTitle>
+                        <Briefcase className="text-[#00A896] flex-shrink-0" size={24} />
+                      </div>
+                      <div className="flex flex-wrap gap-3 text-sm text-gray-600">
+                        <span className="flex items-center gap-1">
+                          <MapPin size={16} />
+                          {position.location}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Clock size={16} />
+                          {position.type}
+                        </span>
+                      </div>
+                      <div className="mt-2">
+                        <span className="inline-block bg-teal-100 text-[#00A896] px-3 py-1 rounded-full text-sm font-medium">
+                          {position.department}
+                        </span>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-gray-600 mb-4">{position.description}</p>
+                      <Link href="/contact">
+                        <Button className="w-full bg-[#00A896] hover:bg-[#008c7a] text-white">
+                          Apply Now
+                        </Button>
+                      </Link>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
         </div>
       </section>
 

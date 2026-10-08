@@ -1,7 +1,7 @@
 // components/layout/Header.jsx
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
@@ -22,6 +22,11 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [meetingDialogOpen, setMeetingDialogOpen] = useState(false);
   const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const solutionItems = [
     {
@@ -125,27 +130,39 @@ export function Header() {
                   {item.name}
                 </Link>
               ))}
-            <Dialog open={meetingDialogOpen} onOpenChange={setMeetingDialogOpen}>
-              <DialogTrigger asChild>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="border-[#00A896] text-[#00A896] hover:bg-[#00A896] hover:text-white"
-                >
-                  <Calendar className="mr-2 h-4 w-4" />
-                  Book Meeting
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-[500px]">
-                <DialogHeader>
-                  <DialogTitle>Book a Meeting with Our Expert</DialogTitle>
-                  <DialogDescription>
-                    Schedule a consultation to discuss your sourcing needs. We'll get back to you within 24 hours.
-                  </DialogDescription>
-                </DialogHeader>
-                <BookMeetingForm onSuccess={() => setMeetingDialogOpen(false)} />
-              </DialogContent>
-            </Dialog>
+            {isMounted && (
+              <Dialog open={meetingDialogOpen} onOpenChange={setMeetingDialogOpen}>
+                <DialogTrigger asChild>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="border-[#00A896] text-[#00A896] hover:bg-[#00A896] hover:text-white"
+                  >
+                    <Calendar className="mr-2 h-4 w-4" />
+                    Book Meeting
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[500px]">
+                  <DialogHeader>
+                    <DialogTitle>Book a Meeting with Our Expert</DialogTitle>
+                    <DialogDescription>
+                      Schedule a consultation to discuss your sourcing needs. We'll get back to you within 24 hours.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <BookMeetingForm onSuccess={() => setMeetingDialogOpen(false)} />
+                </DialogContent>
+              </Dialog>
+            )}
+            {!isMounted && (
+              <Button
+                variant="outline"
+                size="sm"
+                className="border-[#00A896] text-[#00A896] hover:bg-[#00A896] hover:text-white"
+              >
+                <Calendar className="mr-2 h-4 w-4" />
+                Book Meeting
+              </Button>
+            )}
             <Link href="/contact">
               <Button
                 size="sm"
@@ -230,17 +247,37 @@ export function Header() {
                 </Link>
               ))}
             <div className="px-4 pt-4 space-y-2">
-              <Dialog open={meetingDialogOpen} onOpenChange={setMeetingDialogOpen}>
-                <DialogTrigger asChild>
-                  <Button
-                    variant="outline"
-                    className="w-full border-[#00A896] text-[#00A896] hover:bg-[#00A896] hover:text-white"
-                  >
-                    <Calendar className="mr-2 h-4 w-4" />
-                    Book Meeting
-                  </Button>
-                </DialogTrigger>
-              </Dialog>
+              {isMounted && (
+                <Dialog open={meetingDialogOpen} onOpenChange={setMeetingDialogOpen}>
+                  <DialogTrigger asChild>
+                    <Button
+                      variant="outline"
+                      className="w-full border-[#00A896] text-[#00A896] hover:bg-[#00A896] hover:text-white"
+                    >
+                      <Calendar className="mr-2 h-4 w-4" />
+                      Book Meeting
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[500px]">
+                    <DialogHeader>
+                      <DialogTitle>Book a Meeting with Our Expert</DialogTitle>
+                      <DialogDescription>
+                        Schedule a consultation to discuss your sourcing needs. We'll get back to you within 24 hours.
+                      </DialogDescription>
+                    </DialogHeader>
+                    <BookMeetingForm onSuccess={() => setMeetingDialogOpen(false)} />
+                  </DialogContent>
+                </Dialog>
+              )}
+              {!isMounted && (
+                <Button
+                  variant="outline"
+                  className="w-full border-[#00A896] text-[#00A896] hover:bg-[#00A896] hover:text-white"
+                >
+                  <Calendar className="mr-2 h-4 w-4" />
+                  Book Meeting
+                </Button>
+              )}
               <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
                 <Button className="w-full bg-[#00A896] hover:bg-[#008c7a]">
                   Get Started

@@ -1,7 +1,9 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Calendar, ArrowRight, TrendingUp, Globe, Package } from "lucide-react";
+import { Calendar, ArrowRight, TrendingUp, Globe, Package, Loader2 } from "lucide-react";
+import { firestoreService } from "@/lib/firestoreService";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -66,6 +68,28 @@ export function NewsPage() {
     },
   ];
 
+  const [newsData, setNewsData] = useState(newsItems);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const fetchedNews = await firestoreService.getAll('news', 'date', 'desc');
+        if (fetchedNews && fetchedNews.length > 0) {
+          const activeNews = fetchedNews.filter(n => n.status !== 'draft');
+          if (activeNews.length > 0) {
+            setNewsData(activeNews);
+          }
+        }
+      } catch (error) {
+        console.error("Failed to load news from database, using fallback.", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchNews();
+  }, []);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -111,49 +135,60 @@ export function NewsPage() {
       {/* News Grid */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            {newsItems.map((item, index) => (
-              <motion.div key={index} variants={itemVariants}>
-                <Card className="h-full border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden">
-                  <div className="relative h-48 w-full">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-[#00A896] text-white px-3 py-1 rounded-full text-sm font-semibold">
-                        {item.category}
-                      </span>
+          {loading ? (
+            <div className="flex flex-col items-center justify-center py-20 space-y-4">
+              <Loader2 className="w-10 h-10 animate-spin text-[#00A896]" />
+              <p className="text-gray-500 animate-pulse">Loading News...</p>
+            </div>
+          ) : newsData.length === 0 ? (
+            <div className="text-center py-10">
+              <p className="text-gray-500 text-lg">No news articles found. Check back soon!</p>
+            </div>
+          ) : (
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            >
+              {newsData.map((item, index) => (
+                <motion.div key={index} variants={itemVariants}>
+                  <Card className="h-full border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden flex flex-col">
+                    <div className="relative h-48 w-full flex-shrink-0">
+                      <Image
+                        src={item.image || item.imageUrl || "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop"}
+                        alt={item.title}
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute top-4 left-4">
+                        <span className="bg-[#00A896] text-white px-3 py-1 rounded-full text-sm font-semibold">
+                          {item.category || "News"}
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                  <CardHeader>
-                    <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
-                      <Calendar size={16} />
-                      {item.date}
-                    </div>
-                    <CardTitle className="text-xl mb-2">{item.title}</CardTitle>
-                    <CardDescription className="text-base">{item.excerpt}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <Button
-                      variant="link"
-                      className="text-[#00A896] hover:text-[#008c7a] p-0"
-                    >
-                      Read More <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
+                    <CardHeader className="flex-grow">
+                      <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
+                        <Calendar size={16} />
+                        {item.date}
+                      </div>
+                      <CardTitle className="text-xl mb-2 line-clamp-2">{item.title}</CardTitle>
+                      <CardDescription className="text-base line-clamp-3">{item.excerpt || item.content}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="mt-auto">
+                      <Button
+                        variant="link"
+                        className="text-[#00A896] hover:text-[#008c7a] p-0"
+                      >
+                        Read More <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
         </div>
       </section>
 
